@@ -31,6 +31,7 @@ class Weight extends Component {
         
         this.setState({weight: this.state.weightValue, showWeightInput: false})
         
+        // window.location.reload();
     }
 
     render() {
