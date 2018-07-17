@@ -30,7 +30,6 @@ export default class Weight extends PureComponent {
                     negativeWeight: true
                 })
             }else{
-
                 this.setState({finishWeight})
             }
         })

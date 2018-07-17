@@ -40,6 +40,8 @@ export default class StartPanel extends PureComponent {
         const userWeight = {
             weight: weight
         }
+        
+
         axios.post(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/userWeight.json`, userWeight)
 
         axios.post(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/user.json`, user)
