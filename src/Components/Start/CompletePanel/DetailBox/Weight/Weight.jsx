@@ -12,6 +12,9 @@ class Weight extends Component {
         weight: localStorage.getItem(`${FirebaseConfig.auth().currentUser.uid}weight`)
     }
 
+    componentDidMount(){
+        console.log(this.props)
+    }
     showWeightBtn = () => {
         const showWeightInput = !this.state.showWeightInput;
         this.setState({showWeightInput})
@@ -48,7 +51,7 @@ class Weight extends Component {
                     max={999}
                     onChange={event => this.setState({weightValue: event.target.value.slice(0,3)})}
                     placeholder="KG"
-                    className="user-name" /></Aux> : null }
+                        /></Aux> : null }
             </div>
         )
     }

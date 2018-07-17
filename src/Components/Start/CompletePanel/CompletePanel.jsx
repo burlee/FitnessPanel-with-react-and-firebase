@@ -49,31 +49,27 @@ export default class CompletePanel extends Component {
         const showTable = this.state.showTable;
         this.setState({showTable: !showTable})
     }
+
     render() {
-        
+    console.log(this.state.height)
     let userExist = null
-    let userDetails = null
 
     if(this.state.name){
         userExist = ( 
-        <Header>
-            <Aux>
-                <h5 className={classes.PanelHeader}>Witaj {this.state.name} w swoim FitnessPanelu</h5>
-            </Aux>
-        </Header>)
-    }
-    if(this.state.name){
-        userDetails = (
         <Aux>
-            <CaloriesSummary/>
-            <Macronutrients/>
-            <StartWeight/>
-            <WeightProgress currentWeight={this.state.currentWeight}/>
-            <Weight userHeight={this.state.height}/>
-            <BMI showTable={this.state.showTable} showTableFn={this.showTable} BMI={this.state.BMI}/>
-        </Aux>)
+            <Header>
+                    <h5 className={classes.PanelHeader}>Witaj {this.state.name} w swoim FitnessPanelu</h5>
+            </Header>
+                <CaloriesSummary/>
+                <Macronutrients/>
+                <StartWeight/>
+                <WeightProgress currentWeight={this.state.currentWeight}/>
+                <Weight userHeight={this.state.height}/>
+                <BMI showTable={this.state.showTable} showTableFn={this.showTable} BMI={this.state.BMI}/>
+        </Aux>
+        )
     }
-
+   
     return (
         <Aux>
             <PanelWrapper wrapperType='DisplayFlex'>
@@ -83,7 +79,6 @@ export default class CompletePanel extends Component {
                     <button className={classes.FillProfilBtn} style={{display: this.state.userExist, margin: '0 auto'}} onClick={this.successFillProfil}>Uzupełnij profil</button>
                 </div>
                 <Backdrop show={this.state.showTable} modalClosed={this.showTable}/>
-                {userDetails}
             </PanelWrapper>
         </Aux>
         )
