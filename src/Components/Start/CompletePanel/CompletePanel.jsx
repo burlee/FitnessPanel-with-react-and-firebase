@@ -15,13 +15,13 @@ import WeightProgress from './DetailBox/WeightProgress/WeightProgress'
 
 export default class CompletePanel extends Component {
     state ={
+        BMI: localStorage.getItem(`${FirebaseConfig.auth().currentUser.uid}BMI`),
+        name : localStorage.getItem(`${FirebaseConfig.auth().currentUser.uid}name`),
+        currentWeight: localStorage.getItem(`${FirebaseConfig.auth().currentUser.uid}weight`),
         userExist: 'none',
         age : '',
-        name : localStorage.getItem(`${FirebaseConfig.auth().currentUser.uid}name`),
         height : '',
         weight: '',
-        currentWeight: localStorage.getItem(`${FirebaseConfig.auth().currentUser.uid}weight`),
-        BMI: localStorage.getItem(`${FirebaseConfig.auth().currentUser.uid}BMI`),
         showTable: false      
     }
     
@@ -51,7 +51,6 @@ export default class CompletePanel extends Component {
     }
 
     render() {
-    console.log(this.state.height)
     let userExist = null
 
     if(this.state.name){
