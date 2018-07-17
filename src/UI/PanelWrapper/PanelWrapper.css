@@ -1,0 +1,26 @@
+.PanelWrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 15px;
+    height: 100%;
+    width: calc(100% - 100px);
+    margin-left: 100px;
+    box-sizing: border-box;
+    animation: openmodal;
+    animation-duration: 1.1s;
+}
+.DisplayFlex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.DisplayFlexAccountOptions{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+@keyframes openmodal{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}

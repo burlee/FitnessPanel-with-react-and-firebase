@@ -1,0 +1,57 @@
+.DetailBox{
+    width: 150px;
+    height: 150px;
+    margin: 5px;
+    box-shadow: 0px 1px 3px #808080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    animation: opacity;
+    animation-duration: 1.3s;
+}
+.DetailBox p{
+    color: #4c4c4c;
+    font-size: 12px;
+    text-align: center;
+}
+.DetailBox span{
+    font-size: 35px;
+    color: rgb(76, 76, 76);
+}
+.DetailBox button{
+    background: none;
+    border: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    color: #4caf50;
+    outline: none;
+    cursor: pointer;
+}
+.DetailBox input{
+    background: none;
+    outline: none;
+    border: none;
+    margin-top: 5px;
+    text-align: center;
+    width: 40px;
+    color: #4c4c4c;
+}
+.DetailBox a{
+    font-size: 20px;
+    color: rgb(76, 76, 76);
+    text-decoration: none;
+}
+
+
+@keyframes opacity {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+

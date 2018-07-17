@@ -1,0 +1,35 @@
+.DisplayMeal{
+    width: 170px;
+    height: 170px;
+    box-shadow: 0px 1px 3px #808080;
+    margin: 5px;
+    padding: 10px;
+    border-radius:3px;
+}
+.DisplayMeal p{
+    padding-bottom: 5px;
+    margin: 0;
+    font-size: 13px;
+    color: #4c4c4c;
+}
+.DisplayMeal button{
+    border: none;
+    display: block;
+    margin-left: auto;
+    background: #808080;
+    outline: none;
+    color: white;
+    box-shadow: 0px 2px 5px grey;
+    width: 15px;
+    height: 15px;
+    font-size: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 8px;
+    padding: 3px;
+
+}
+.DisplayMeal span{
+    font-size: 12px;
+    color: #4c4c4c;
+}

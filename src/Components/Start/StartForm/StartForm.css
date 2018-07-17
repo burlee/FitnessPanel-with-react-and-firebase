@@ -1,0 +1,54 @@
+.FormStyle{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+    animation: openmodal;
+    animation-duration: 1.1s;
+}
+.FormStyle input[type=text] {
+    width: 100%;
+    height: 35px;
+    outline: none;
+    text-indent: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    transition: 0.3s all ease-in-out;
+    margin-bottom: 10px;
+    color: #4c4c4c;
+    font-size: 12px;
+}
+.FormStyle form{
+    background: rgba(128, 128, 128, 0.04);
+    padding: 15px;
+    border: 1px solid rgba(128, 128, 128, 0.04);
+}
+.FormStyle input[type=text]:focus {
+    width: 100%;
+    height: 35px;
+    outline: none;
+    text-indent: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.FormStyle label{
+    color: #4c4c4c;
+    font-size: 15px;
+}
+.FormStyle h2{
+    text-align: center;
+    color:#4c4c4c;
+}
+.FormStyle p {
+    color:#4c4c4c;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+@keyframes openmodal{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
+@media only screen and (max-width: 768px) {
+    .FormStyle{
+        width: 70%;
+    }
+}

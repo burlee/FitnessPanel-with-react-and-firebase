@@ -1,0 +1,11 @@
+.Header{
+    margin: 5px;
+    height: 100px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.Header p{
+    color: #4c4c4c;
+    font-size: 12px;
+    text-align: center;
+}

@@ -1,0 +1,58 @@
+.AccountDeleteModal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-30%,-50%);
+    -ms-transform: translate(-30%,-50%);
+    transform: translate(-30%,-50%);
+    width: 315px;
+    height: 120px;
+    background: white;
+    z-index: 998;
+    border-radius: 3px;
+    padding: 20px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 13px;
+    color: #4c4c4c;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    animation: zoomIn;
+    animation-duration: 0.2s;
+}
+.AccountDeleteModal p{
+    text-align: center;
+    font-size: 12px;
+    color: #4c4c4c;
+    margin-bottom: 15px;
+}
+.AccountDeleteModal button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f44336;
+    color: white;
+    width: 120px;
+    height: 32px;
+    border: none;
+    font-weight: bold;
+    font-size: 20px;
+    -webkit-box-shadow: 0px 2px 3px #9e9e9e;
+    box-shadow: 0px 2px 3px #9e9e9e;
+    right: 20px;
+    top: 20px;
+    outline: none;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+@keyframes zoomIn {
+    from {
+      opacity: 0;
+      -webkit-transform: scale3d(.3, .3, .3);
+      transform: scale3d(.3, .3, .3);
+    }
+  
+    50% {
+      opacity: 1;
+    }
+}

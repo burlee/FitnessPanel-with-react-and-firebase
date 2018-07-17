@@ -1,0 +1,20 @@
+.WelcomePanel{
+    text-align: center;
+    width: 50%;
+    margin: 0 auto;
+}
+.WelcomePanel p{
+    color:#4c4c4c;
+    text-align: justify;
+    font-size: 12px;
+    line-height: 1.5;
+}
+.WelcomePanel h2{
+    text-align: center;
+    color:#4c4c4c;
+}
+@media only screen and (max-width: 768px) {
+    .WelcomePanel{
+        width: 70%;
+    }
+}
