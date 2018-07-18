@@ -1,4 +1,10 @@
-### FitnessPanel - control your weight, macronutrients, calories and a lot of things.
+#### FitnessPanel - control your weight, macronutrients, calories and a lot of things.
 
-![fitnesspanel](https://user-images.githubusercontent.com/36506555/42875678-b476ed66-8a84-11e8-8bd7-d2d1f56348aa.PNG)
+![fitnesspanelIMG](https://user-images.githubusercontent.com/36506555/42879178-fdbd6594-8a8f-11e8-9fbf-2bbf7a646148.PNG)
 
+#### I used mainly:
+```
+-ReactJS
+-Firebase
+-Axios
+```
