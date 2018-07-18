@@ -23,12 +23,8 @@
     height: 62px;
     border-radius: 3px;
     margin-left: 5px;
+}
 
-}
-.NavHeader ul li a{
-    text-decoration: none;
-    color: black;
-}
 .Logo{
     color: black;
     width: 80px;

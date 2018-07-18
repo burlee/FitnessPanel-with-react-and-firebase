@@ -12,8 +12,8 @@
     padding-left: 5px;
     padding-right: 5px;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-    animation: zoomIn;
-    animation-duration: .5s;
+    animation: openmodal;
+    animation-duration: 0.5s;
 }
 .Modal input{
     width: 90%;
@@ -59,28 +59,7 @@
     color: #4c4c4c;
     text-transform: uppercase;
 }
-
-
-@-webkit-keyframes zoomIn {
-    from {
-      opacity: 0;
-      -webkit-transform: scale3d(0.3, 0.3, 0.3);
-      transform: scale3d(0.3, 0.3, 0.3);
-    }
-  
-    50% {
-      opacity: 1;
-    }
-  }
-
-@keyframes zoomIn {
-    from {
-      opacity: 0;
-      -webkit-transform: scale3d(.3, .3, .3);
-      transform: scale3d(.3, .3, .3);
-    }
-  
-    50% {
-      opacity: 1;
-    }
+@keyframes openmodal{
+    from{opacity: 0;}
+    to{opacity: 1;}
 }

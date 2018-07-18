@@ -16,8 +16,8 @@
     font-size: 13px;
     color: #4c4c4c;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-    animation: zoomIn;
-    animation-duration: 0.2s;
+    animation: openmodal;
+    animation-duration: 0.5s;
 }
 .AccountDeleteModal p{
     text-align: center;
@@ -44,15 +44,7 @@
     font-size: 10px;
     cursor: pointer;
 }
-
-@keyframes zoomIn {
-    from {
-      opacity: 0;
-      -webkit-transform: scale3d(.3, .3, .3);
-      transform: scale3d(.3, .3, .3);
-    }
-  
-    50% {
-      opacity: 1;
-    }
+@keyframes openmodal{
+    from{opacity: 0;}
+    to{opacity: 1;}
 }

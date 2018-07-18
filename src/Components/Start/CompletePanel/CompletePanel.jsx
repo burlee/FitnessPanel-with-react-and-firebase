@@ -69,9 +69,9 @@ export default class CompletePanel extends Component {
     }
 
     updateUserWeight = (event) => {
-        let typeUserWeight = event.target.value.slice(0,3);
+        const typeUserWeight = event.target.value.slice(0,3);
 
-        let BMIValue = (typeUserWeight / (this.state.height * this.state.height) * 10000).toFixed(2);
+        const BMIValue = (typeUserWeight / (this.state.height * this.state.height) * 10000).toFixed(2);
 
         localStorage.setItem(`${FirebaseConfig.auth().currentUser.uid}BMI`, this.state.BMI);
         this.setState({

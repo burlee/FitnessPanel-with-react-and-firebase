@@ -46,3 +46,9 @@
     font-size: 10px;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 768px) {
+    .PanelHeader{
+        text-align: center;
+    }
+}
