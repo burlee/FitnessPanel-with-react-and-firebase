@@ -3,16 +3,18 @@ import classes from './CompletePanel.css'
 import classesBox from './DetailBox/DetailBox.css'
 import axios from 'axios';
 import Aux from '../../../HOC/aux_x'
+import { DebounceInput } from 'react-debounce-input'
 import Header from '../../../UI/Header/Header';
 import FirebaseConfig from '../../../Config/FirebaseConfig'
 import PanelWrapper from '../../../UI/PanelWrapper/PanelWrapper';
 import Backdrop from '../../../UI/Backdrop/Backdrop';
+
 import StartWeight from './DetailBox/StartWeight/StartWeight';
 import CaloriesSummary from './DetailBox/CaloriesSummary/CaloriesSummary';
 import Macronutrients from './DetailBox/Macronutrients/Macronutrients';
 import BMI from './DetailBox/BMI/BMI';
 import WeightProgress from './DetailBox/WeightProgress/WeightProgress'
-import { DebounceInput } from 'react-debounce-input'
+import PDF from './DetailBox/PDF/PDF';
 
 export default class CompletePanel extends Component {
     state ={
@@ -105,9 +107,10 @@ export default class CompletePanel extends Component {
                     <h5 className={classes.PanelHeader}>Witaj {this.state.name} w swoim FitnessPanelu</h5>
             </Header>
                 <CaloriesSummary/>
+                <PDF/>
                 <Macronutrients/>
-                <StartWeight/>
                 <WeightProgress currentWeight={this.state.currentWeight}/>
+                <StartWeight/>
                 <BMI showTable={this.state.showTable} showTableFn={this.showTable} BMI={this.state.BMI}/>
                 
                 <div className={classesBox.DetailBox}>

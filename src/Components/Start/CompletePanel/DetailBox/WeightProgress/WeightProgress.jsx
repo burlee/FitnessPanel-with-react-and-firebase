@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react'
 import FirebaseConfig from '../../../../../Config/FirebaseConfig'
 import axios from 'axios'
 import Aux from '../../../../../HOC/aux_x';
+import PropTypes from 'prop-types';
 
 export default class Weight extends PureComponent {
     state = {
@@ -46,7 +47,7 @@ export default class Weight extends PureComponent {
             displayWeight = (
                 <Aux>
                     <p>Przytyłeś</p>
-                    <span>{this.state.finishWeight}</span> 
+                    <span style={{color: '#F44336'}}>{this.state.finishWeight}</span> 
                     <p>KG</p>
                 </Aux>)
         }
@@ -58,3 +59,7 @@ export default class Weight extends PureComponent {
         )
     }
 }
+
+Weight.propTypes = {
+    currentWeight: PropTypes.number
+};
