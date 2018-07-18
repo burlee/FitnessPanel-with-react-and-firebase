@@ -46,7 +46,6 @@ export default class StartPanel extends PureComponent {
 
         axios.post(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/user.json`, user)
             .then(response => {
-                console.log(response)
                 if (response.status === 200) {
                     this.props.history.push('/')
                 }

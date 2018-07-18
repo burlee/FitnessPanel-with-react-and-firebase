@@ -3,7 +3,7 @@ import classes from './Login.css'
 import FirebaseConfig from '../../../Config/FirebaseConfig'
 import ErrorComponent from '../../../UI/ErrorComponent/ErrorComponent';
 import SwitchButton from '../../../UI/SwitchButton/SwitchButton';
-import {DebounceInput} from 'react-debounce-input';
+import { DebounceInput } from 'react-debounce-input';
 
 export default class Login extends Component {
     state = {
@@ -15,17 +15,18 @@ export default class Login extends Component {
     logginUser = (event) => {
         event.preventDefault();
         FirebaseConfig.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then (() => {
-                this.props.history.push('/')}
+            .then(() => {
+                this.props.history.push('/');
+                }
             )
             .catch((() => {
-                this.setState({error: true})
+                this.setState({ error: true })
                 console.log('Błąd logowania...')
             }));
     }
 
     removeError = () => {
-        setTimeout(()=> this.setState({error: false}), 6000)
+        setTimeout(() => this.setState({ error: false }), 6000)
     }
 
     render() {
@@ -41,17 +42,17 @@ export default class Login extends Component {
                         autoComplete="off"
                         minLength={2}
                         debounceTimeout={250}
-                        onChange={event => this.setState({email: event.target.value})} />
+                        onChange={event => this.setState({ email: event.target.value })} />
                     <label htmlFor="password">Hasło:</label>
                     <DebounceInput
                         type="password"
                         id="password"
                         minLength={2}
                         debounceTimeout={250}
-                        onChange={event => this.setState({password: event.target.value})} />
+                        onChange={event => this.setState({ password: event.target.value })} />
                     <button onClick={this.removeError}>Zaloguj</button>
                 </form>
-                {this.state.error ? <ErrorComponent/> : null}
+                {this.state.error ? <ErrorComponent /> : null}
             </div>
         )
     }

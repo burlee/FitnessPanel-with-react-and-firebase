@@ -80,11 +80,13 @@ export default class Navbar extends Component {
               </ul>
             </nav>
           </header> : null}
-
-        <Switch>
-          <Route path='/register' exact component={Register} />
-          <Route path='/login' component={Login} />
-        </Switch>
+        
+        {this.state.userIsLoggin ? null : 
+          <Switch>
+            <Route path='/register' exact component={Register} />
+            <Route path='/login' component={Login} />
+          </Switch>
+        }
 
         {this.state.userIsLoggin ?
           <Switch>

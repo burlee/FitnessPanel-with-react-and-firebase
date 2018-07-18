@@ -7,7 +7,6 @@ import Header from '../../../UI/Header/Header';
 import FirebaseConfig from '../../../Config/FirebaseConfig'
 import PanelWrapper from '../../../UI/PanelWrapper/PanelWrapper';
 import Backdrop from '../../../UI/Backdrop/Backdrop';
-import Weight from './DetailBox/Weight/Weight';
 import StartWeight from './DetailBox/StartWeight/StartWeight';
 import CaloriesSummary from './DetailBox/CaloriesSummary/CaloriesSummary';
 import Macronutrients from './DetailBox/Macronutrients/Macronutrients';
@@ -53,7 +52,9 @@ export default class CompletePanel extends Component {
         .catch(error => error)
 
         axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/userWeight.json`)
-            .then( response => this.setState({newUserWeight: response.data.weight}))
+            .then( response => {
+                this.setState({newUserWeight: response.data.weight})
+            })   
             .catch(error => error)
 
     }
@@ -78,6 +79,7 @@ export default class CompletePanel extends Component {
             BMI: BMIValue,
             currentWeight: typeUserWeight
         })
+
     }
     
     updateUser = () =>{
@@ -106,24 +108,23 @@ export default class CompletePanel extends Component {
                 <Macronutrients/>
                 <StartWeight/>
                 <WeightProgress currentWeight={this.state.currentWeight}/>
-                {/* <Weight userHeight={this.state.height}/> */}
                 <BMI showTable={this.state.showTable} showTableFn={this.showTable} BMI={this.state.BMI}/>
                 
-
                 <div className={classesBox.DetailBox}>
-                <p>Aktualna waga</p>
-                <span>{this.state.newUserWeight}<span style={{fontSize: '16px'}}> KG</span></span>
-                {this.state.showWeightInput ? null : <button onClick={this.showWeightBtn}>Zmień wagę</button>}
-                {this.state.showWeightInput ? <Aux>
+                    <p>Aktualna waga</p>
+                    <span>{this.state.newUserWeight}<span style={{fontSize: '16px'}}> KG</span></span>
+                    {this.state.showWeightInput ? null : <button onClick={this.showWeightBtn}>Aktualizuj</button>}
+                    {this.state.showWeightInput ? <Aux>
                 <button  style={{marginBottom: '1px'}} onClick={this.updateUser}>Aktualizuj</button>
                 <DebounceInput
                     type="number"
                     min={1}
                     max={999}
+                    debounceTimeout={300}
                     onChange={this.updateUserWeight}
                     placeholder="KG"
                         /></Aux> : null }
-            </div>
+                </div>
         </Aux>
         )
     }

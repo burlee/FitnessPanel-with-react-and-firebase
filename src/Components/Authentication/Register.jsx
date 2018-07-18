@@ -35,8 +35,6 @@ export default class Auth extends Component {
         axios.post('https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyB17NW3wAmHjH0e61W6J9ctckblOy4W3JQ', authData)
             .then(response => {
                 this.setState({ successRegister: true })
-                // console.log(response.data.idToken)
-                // console.log(response.data.localId)
             })
             .catch(error => {
                 console.log(error.data)
