@@ -5,6 +5,10 @@
 #### I used mainly:
 ```
 -ReactJS
--Firebase
 -Axios
+Syntax: ES6/ES7
+Backend:
+-Firebase
+
+Project was created via NPM.
 ```
