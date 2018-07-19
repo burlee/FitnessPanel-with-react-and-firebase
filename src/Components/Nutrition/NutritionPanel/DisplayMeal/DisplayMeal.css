@@ -11,10 +11,9 @@
     margin: 0;
     font-size: 13px;
     color: #4c4c4c;
-}
+} 
 .DisplayMeal button{
     border: none;
-    display: block;
     margin-left: auto;
     background: #808080;
     outline: none;
@@ -22,12 +21,12 @@
     box-shadow: 0px 2px 5px grey;
     width: 15px;
     height: 15px;
-    font-size: 5px;
     border-radius: 50%;
     cursor: pointer;
     font-size: 8px;
-    padding: 3px;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .DisplayMeal span{
     font-size: 12px;

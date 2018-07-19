@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import FirebaseConfig from '../../../Config/FirebaseConfig';
 import CaloriesCounter from '../../../UI/CaloriesCounter/CaloriesCounter';
-import DisplayMeal from '../../../UI/DisplayMeal/DisplayMeal';
+import DisplayMeal from '../NutritionPanel/DisplayMeal/DisplayMeal';
 import Header from '../../../UI/Header/Header';
 import PanelWrapper from '../../../UI/PanelWrapper/PanelWrapper';
 import Spinner from '../../../UI/Spinner/Spinner';
@@ -58,8 +58,9 @@ export default class NutritionPanel extends PureComponent {
         axios.delete(`https://fitnesspanel-eb7a2.firebaseio.com/${this.state.currentUserIdFB}/meals/${mealID}.json`)
             .then(response => {
                 if (response.status === 200) {
-                    window.location.reload();
-                    this.setState({ spinnerLoader: true })
+                    let meals = [...this.state.meals];
+                    let mealsFiltered = meals.filter( meal => meal.id !== mealID)
+                    this.setState({ meals: mealsFiltered })
                 }
             })
             .catch(error => console.log(error))
@@ -69,13 +70,14 @@ export default class NutritionPanel extends PureComponent {
         axios.delete(`https://fitnesspanel-eb7a2.firebaseio.com/${this.state.currentUserIdFB}/meals.json`)
             .then(response => {
                 if (response.status === 200) {
-                    window.location.reload()
+                    this.setState({meals: []})
                 }
             })
             .catch(error => console.log(error))
     }
 
     render() {
+        console.log(this.state.meals)
         let displayMeals = null;
         let deleteBtn = null;
 

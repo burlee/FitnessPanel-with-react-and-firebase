@@ -20,7 +20,7 @@ export default class CompletePanel extends Component {
     state ={
         BMI: localStorage.getItem(`${FirebaseConfig.auth().currentUser.uid}BMI`),
         name : localStorage.getItem(`${FirebaseConfig.auth().currentUser.uid}name`),
-        currentWeight: localStorage.getItem(`${FirebaseConfig.auth().currentUser.uid}weight`),
+        currentWeight: parseFloat(localStorage.getItem(`${FirebaseConfig.auth().currentUser.uid}weight`)),
         userExist: 'none',
         age : '',
         height : '',
@@ -79,7 +79,7 @@ export default class CompletePanel extends Component {
         this.setState({
             newUserWeight: typeUserWeight,
             BMI: BMIValue,
-            currentWeight: typeUserWeight
+            currentWeight: parseFloat(typeUserWeight) 
         })
 
     }
