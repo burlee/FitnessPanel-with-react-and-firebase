@@ -17,8 +17,21 @@
     justify-content: center;
     flex-direction: column;
 }
-.changeAddressEmail input[type="email"]{
+.changeAddressEmail input{
     margin-bottom: 10px;
+    border: none;
+    height: 20px;
+    font-size: 12px;
+    color: #4c4c4c;
+    outline: none;
+    text-indent: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    width: 175px;
+    text-align: center;
+}
+.changePassword input{
+    margin-top: 10px;
     border: none;
     height: 20px;
     font-size: 12px;
@@ -38,5 +51,6 @@
     justify-content: center;
     flex-direction: column;
 }
+
 
 

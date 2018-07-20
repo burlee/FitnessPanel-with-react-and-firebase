@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import { DebounceInput } from 'react-debounce-input';
-
 import FirebaseConfig from '../../Config/FirebaseConfig';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Button from '../../UI/Button/Button';
@@ -12,13 +11,20 @@ import classes from './AccountSettings.css';
 export default class AccountSettings extends Component {
     state = {
         deleteAccountModal: false,
-        resetPassword: 'Wyślij link do zresetowania hasła.',
+        resetPassword: 'Zresetuj swoje hasło.',
         addressEmail: '',
         changeAddressEmailCommunicate: 'Tutaj możesz zmienić swój adres e-mail.',
         errorDeleteAccount: 'Czy jesteś pewny swojej decyzji?',
-        errorDelete: false
+        errorDelete: false,
+        CATPCHA: '',
+        inputValueCAPTCHA: '',
+        correctlyCAPTCHA: true,
+        disabledInputCAPTCHA: false
     }
 
+    componentDidMount(){
+        this.randomString();
+    }
     deleteAccount = () => {
         let user = FirebaseConfig.auth().currentUser;
 
@@ -50,7 +56,11 @@ export default class AccountSettings extends Component {
 
         auth.sendPasswordResetEmail(emailAddress)
             .then(() => {
-                this.setState({ resetPassword: `Link do zmiany hasła został wysłany na ${emailAddress}.` })
+                this.setState({ 
+                    resetPassword: `Link do zmiany hasła został wysłany na ${emailAddress}.`, 
+                    correctlyCAPTCHA: true,
+                    disabledInputCAPTCHA: true
+                })
             })
             .catch(error => console.log(error))
     }
@@ -65,12 +75,41 @@ export default class AccountSettings extends Component {
             .catch(() => this.setState({ changeAddressEmailCommunicate: `Wpisany adres e-mail jest niepoprawny.` }))
     }
 
+     randomString = () => {
+        let chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz";
+        let string_length = 8;
+        let randomstring = '';
+        for (let i=0; i<string_length; i++) {
+            let rnum = Math.floor(Math.random() * chars.length);
+            randomstring += chars.substring(rnum,rnum+1);
+        }
+        this.setState({CATPCHA: randomstring})
+    }
+
+    validityCAPTCHA = (event) => {
+        this.setState({inputValueCAPTCHA: event.target.value})
+        
+        if(this.state.inputValueCAPTCHA === this.state.CATPCHA){
+            this.setState({correctlyCAPTCHA: false})
+        }else{
+            this.setState({correctlyCAPTCHA: true})
+        }
+        
+    }
+    
     render() {
         return (
             <PanelWrapper wrapperType='DisplayFlexAccountOptions'>
                 <div className={classes.changePassword}>
                     <p>{this.state.resetPassword}</p>
-                    <Button clicked={this.resetPassword}>Zresetuj hasło</Button>
+                    <Button disabled={this.state.correctlyCAPTCHA} clicked={this.resetPassword}>Wyślij link</Button>
+                    <DebounceInput
+                        disabled={this.state.disabledInputCAPTCHA}
+                        minLength={7}
+                        debounceTimeout={300}
+                        placeholder="Wpisz kod catpcha..."
+                        onChange={this.validityCAPTCHA} />
+                    <p>Kod: {this.state.CATPCHA}</p>
                 </div>
                 <div className={classes.changeAddressEmail}>
                     <p>{this.state.changeAddressEmailCommunicate}</p>

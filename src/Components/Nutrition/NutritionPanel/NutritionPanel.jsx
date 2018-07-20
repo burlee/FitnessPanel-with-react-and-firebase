@@ -54,13 +54,15 @@ export default class NutritionPanel extends PureComponent {
             .catch(error => console.log(error))
     }
 
-    deleteMeal = (mealID) => {
+    deleteMeal = (mealID, mealCalories) => {
         axios.delete(`https://fitnesspanel-eb7a2.firebaseio.com/${this.state.currentUserIdFB}/meals/${mealID}.json`)
             .then(response => {
                 if (response.status === 200) {
                     let meals = [...this.state.meals];
-                    let mealsFiltered = meals.filter( meal => meal.id !== mealID)
-                    this.setState({ meals: mealsFiltered })
+                    let caloriesSummary = this.state.caloriesSummary;
+                    let mealsFiltered = meals.filter( meal => meal.id !== mealID);
+                    this.setState({meals: mealsFiltered, caloriesSummary: caloriesSummary - mealCalories})
+                    localStorage.setItem(`${FirebaseConfig.auth().currentUser.uid}caloriesSummary`, caloriesSummary - mealCalories);
                 }
             })
             .catch(error => console.log(error))
@@ -77,7 +79,6 @@ export default class NutritionPanel extends PureComponent {
     }
 
     render() {
-        console.log(this.state.meals)
         let displayMeals = null;
         let deleteBtn = null;
 
@@ -91,7 +92,7 @@ export default class NutritionPanel extends PureComponent {
                     protein={meal.protein}
                     carbohydrates={meal.carbohydrates}
                     fat={meal.fat}
-                    deleteMeal={() => this.deleteMeal(meal.id)}
+                    deleteMeal={() => this.deleteMeal(meal.id, meal.calories)}
                 />
             })
             deleteBtn = <button onClick={this.deleteAllMeal} className={classes.DeleteButton}>Usuń wszystkie</button>
