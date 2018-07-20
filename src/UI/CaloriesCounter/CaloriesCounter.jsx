@@ -7,7 +7,7 @@ const statusBarStyle = {
     borderRadius: '3px',
     height: '10px',
     backgroundColor: '#4CAF50',
-    transition: 'all 1.3s ease-in-out'
+    transition: 'all .8s ease-in-out'
 }
 
 class CaloriesCounter extends Component {
