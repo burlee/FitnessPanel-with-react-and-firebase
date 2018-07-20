@@ -31,37 +31,38 @@ export default class CompletePanel extends Component {
         weightValue: null,
         spinnerLoader: true
     }
-    
+
     showWeightBtn = () => {
         const showWeightInput = !this.state.showWeightInput;
         this.setState({showWeightInput})
     }
 
     componentDidMount(){
-        axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/user.json`)
-        .then(response => {
-            for(let key in response.data){
-                this.setState({
-                    age: response.data[key].age,
-                    name: response.data[key].name,
-                    height: response.data[key].height,
-                    weight: response.data[key].weight
-                })
-                this.setState({spinnerLoader: false})
-            }
-            if(response.data === null){
-                this.setState({userExist: 'block', spinnerLoader: false})
-            }
-        })
-        .catch(error => error)
-
-        axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/userWeight.json`)
-            .then( response => {
-                this.setState({newUserWeight: response.data.weight})
-            })   
+            axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/user.json`)
+            .then(response => {
+                for(let key in response.data){
+                    this.setState({
+                        age: response.data[key].age,
+                        name: response.data[key].name,
+                        height: response.data[key].height,
+                        weight: response.data[key].weight
+                    })
+                    this.setState({spinnerLoader: false})
+                }
+                if(response.data === null){
+                    this.setState({userExist: 'block', spinnerLoader: false})
+                }
+            })
             .catch(error => error)
+    
+            axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/userWeight.json`)
+                .then( response => {
+                    this.setState({newUserWeight: response.data.weight})
+                })   
+                .catch(error => error)
     }
     
+  
     successFillProfil = () => {
         this.props.history.push('/profil')
     }
@@ -97,8 +98,9 @@ export default class CompletePanel extends Component {
         axios.put(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/userWeight.json`, userWeight)
 
     }
-
+   
     render() {
+
     let userExist = null
 
     if(this.state.name){

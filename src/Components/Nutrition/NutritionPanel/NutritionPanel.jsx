@@ -1,6 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
 import 'moment/locale/pl';
+import uuid from 'uuid'
 import React, { PureComponent } from 'react';
 import { NavLink } from 'react-router-dom';
 import Backdrop from '../../../UI/Backdrop/Backdrop';
@@ -36,6 +37,7 @@ export default class NutritionPanel extends PureComponent {
                     })
                     updateMeal.push({
                         id: key,
+                        uid: mealFromDB[key].uid,
                         name: mealFromDB[key].name,
                         calories: mealFromDB[key].calories,
                         protein: mealFromDB[key].macronutrients.protein,
@@ -43,8 +45,7 @@ export default class NutritionPanel extends PureComponent {
                         fat: mealFromDB[key].macronutrients.fat,
                         date: mealFromDB[key].date
                     })
-                    this.setState({ meals: updateMeal })
-                    this.setState({ allCalories: updateCalories })
+                    this.setState({ meals: updateMeal, allCalories: updateCalories })
                 }
             })
             .then(() => {
@@ -102,6 +103,7 @@ export default class NutritionPanel extends PureComponent {
         let fullDate = `${day}/${month}/${year}`;
         
         const addNewMeal = {
+            uid: uuid(),
             name: this.firstCharToUppercase(mealName),
             calories: (fat * 9 + protein * 4 + carbohydrates * 4),
             protein: protein,
@@ -144,7 +146,7 @@ export default class NutritionPanel extends PureComponent {
         if (this.state.meals.length !== 0) {
             displayMeals = this.state.meals.map(meal => {
                 return <DisplayMeal
-                    key={meal.id}
+                    key={meal.uid}
                     date={meal.date}
                     name={meal.name}
                     calories={meal.calories}
