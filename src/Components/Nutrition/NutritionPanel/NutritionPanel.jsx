@@ -10,6 +10,7 @@ import CaloriesCounter from '../../../UI/CaloriesCounter/CaloriesCounter';
 import DisplayMeal from '../NutritionPanel/DisplayMeal/DisplayMeal';
 import Header from '../../../UI/Header/Header';
 import PanelWrapper from '../../../UI/PanelWrapper/PanelWrapper';
+import WarningModal from './WarningModal/WarningModal'
 import Spinner from '../../../UI/Spinner/Spinner';
 import classes from './NutritionPanel.css';
 
@@ -20,6 +21,7 @@ export default class NutritionPanel extends PureComponent {
         caloriesSummary: null,
         spinnerLoader: true,
         toggle: false,
+        warningModal: false,
         currentUserIdFB: FirebaseConfig.auth().currentUser.uid
     }
     componentDidMount() {
@@ -58,6 +60,8 @@ export default class NutritionPanel extends PureComponent {
     }
 
     deleteMeal = (mealID, mealCalories) => {
+        if(mealID === undefined){this.setState({warningModal: true})}
+        else(
         axios.delete(`https://fitnesspanel-eb7a2.firebaseio.com/${this.state.currentUserIdFB}/meals/${mealID}.json`)
             .then(response => {
                 if (response.status === 200) {
@@ -69,6 +73,7 @@ export default class NutritionPanel extends PureComponent {
                 }
             })
             .catch(error => console.log(error))
+        )
     }
 
     deleteAllMeal = () => {
@@ -96,30 +101,22 @@ export default class NutritionPanel extends PureComponent {
         const day = data.getDate();
         let fullDate = `${day}/${month}/${year}`;
         
-        //This meal is send to server
-        const meal = {
-            name: this.firstCharToUppercase(mealName),
-            calories: (fat * 9 + protein * 4 + carbohydrates * 4),
-            macronutrients: {
-                protein: protein,
-                carbohydrates: carbohydrates,
-                fat: fat
-            },
-            date: fullDate,
-            time: moment().format('LT')
-        }
-
-        //This meal change state, unique key is added via firebase
         const addNewMeal = {
             name: this.firstCharToUppercase(mealName),
             calories: (fat * 9 + protein * 4 + carbohydrates * 4),
             protein: protein,
             carbohydrates: carbohydrates,
+            macronutrients: {
+                protein: protein,
+                carbohydrates: carbohydrates,
+                fat: fat
+            },
             fat: fat,
-            date: fullDate
+            date: fullDate,
+            time: moment().format('LT')
         }
 
-        axios.post(`https://fitnesspanel-eb7a2.firebaseio.com/${this.state.currentUserIdFB}/meals.json`, meal)
+        axios.post(`https://fitnesspanel-eb7a2.firebaseio.com/${this.state.currentUserIdFB}/meals.json`, addNewMeal)
             .then(response => {
                 if(response.status === 200){
                     let meals = [...this.state.meals];
@@ -167,6 +164,7 @@ export default class NutritionPanel extends PureComponent {
                         {this.state.meals.length === 0 ? null : <NavLink to="nutrition-details"><i title="Zobacz szczegółowe dane" style={{ fontSize: '40px', color: 'gray' }} className="far fa-chart-bar"></i></NavLink>}
                         {this.state.meals.length === 0 ? null : <CaloriesCounter caloriesSummary={this.state.caloriesSummary} />}
                     </Header>
+                        {this.state.warningModal ? <WarningModal WarningModal={this.state.warningModal}/> : null}
                         {displayMeals}
                         {this.state.toggle ?
                         <Aux>

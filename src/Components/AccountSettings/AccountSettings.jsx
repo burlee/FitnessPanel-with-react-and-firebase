@@ -32,9 +32,7 @@ export default class AccountSettings extends Component {
             .then(response => {
                 if (response.status === 200) {
                     //remove from localstorage
-                    localStorage.removeItem(`${FirebaseConfig.auth().currentUser.uid}name`);
-                    localStorage.removeItem(`${FirebaseConfig.auth().currentUser.uid}BMI`);
-                    localStorage.removeItem(`${FirebaseConfig.auth().currentUser.uid}calory`);
+                    localStorage.clear();
 
                     user.delete().then(response => {
                         window.location.replace('/register')

@@ -8,13 +8,13 @@ import Header from '../../../UI/Header/Header';
 import FirebaseConfig from '../../../Config/FirebaseConfig'
 import PanelWrapper from '../../../UI/PanelWrapper/PanelWrapper';
 import Backdrop from '../../../UI/Backdrop/Backdrop';
-
 import StartWeight from './DetailBox/StartWeight/StartWeight';
 import CaloriesSummary from './DetailBox/CaloriesSummary/CaloriesSummary';
 import Macronutrients from './DetailBox/Macronutrients/Macronutrients';
 import BMI from './DetailBox/BMI/BMI';
 import WeightProgress from './DetailBox/WeightProgress/WeightProgress'
 import PDF from './DetailBox/PDF/PDF';
+import Spinner from '../../../UI/Spinner/Spinner';
 
 export default class CompletePanel extends Component {
     state ={
@@ -28,7 +28,8 @@ export default class CompletePanel extends Component {
         newUserWeight: '',
         showTable: false,
         showWeightInput: false,
-        weightValue: null
+        weightValue: null,
+        spinnerLoader: true
     }
     
     showWeightBtn = () => {
@@ -46,9 +47,10 @@ export default class CompletePanel extends Component {
                     height: response.data[key].height,
                     weight: response.data[key].weight
                 })
+                this.setState({spinnerLoader: false})
             }
             if(response.data === null){
-                this.setState({userExist: 'block'})
+                this.setState({userExist: 'block', spinnerLoader: false})
             }
         })
         .catch(error => error)
@@ -58,7 +60,6 @@ export default class CompletePanel extends Component {
                 this.setState({newUserWeight: response.data.weight})
             })   
             .catch(error => error)
-
     }
     
     successFillProfil = () => {
@@ -141,6 +142,7 @@ export default class CompletePanel extends Component {
                     <button className={classes.FillProfilBtn} style={{display: this.state.userExist, margin: '0 auto'}} onClick={this.successFillProfil}>Uzupełnij profil</button>
                 </div>
                 <Backdrop show={this.state.showTable} modalClosed={this.showTable}/>
+                {this.state.spinnerLoader ? <Spinner/> : null}
             </PanelWrapper>
         </Aux>
         )

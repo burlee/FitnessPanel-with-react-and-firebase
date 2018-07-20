@@ -5,6 +5,8 @@
     margin: 5px;
     padding: 10px;
     border-radius:3px;
+    animation-name: zoomIn;
+    animation-duration: 0.8s;
 }
 .DisplayMeal p{
     padding-bottom: 5px;
@@ -32,3 +34,49 @@
     font-size: 12px;
     color: #4c4c4c;
 }
+
+@-webkit-keyframes zoomIn {
+    from {
+      opacity: 0;
+      -webkit-transform: scale3d(0.3, 0.3, 0.3);
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+  
+    50% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes zoomIn {
+    from {
+      opacity: 0;
+      -webkit-transform: scale3d(0.3, 0.3, 0.3);
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+  
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes zoomOut {
+    from {
+      opacity: 1;
+    }
+  
+    50% {
+      opacity: 0;
+      -webkit-transform: scale3d(0.3, 0.3, 0.3);
+      transform: scale3d(0.3, 0.3, 0.3);
+    }
+  
+    to {
+      opacity: 0;
+    }
+  }
+  
+  .zoomOut {
+    -webkit-animation-name: zoomOut;
+    animation-name: zoomOut;
+    animation-duration: 0.8s;
+  }
