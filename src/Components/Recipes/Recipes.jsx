@@ -1,20 +1,24 @@
-import React, { Component } from 'react'
-import PanelWrapper from '../../UI/PanelWrapper/PanelWrapper';
-import classes from './Recipes.css'
-import Backdrop from '../../UI/Backdrop/Backdrop';
-import DisplayRecipe from './DisplayRecipe/DisplayRecipe';
-import Paragraph from '../../UI/Paragraph/Paragraph'
-import Header from '../../UI/Header/Header'
-import Aux from '../../HOC/aux_x';
 import axios from 'axios';
-import uuid from 'uuid'
+import React, { Component } from 'react';
+import { DebounceInput } from 'react-debounce-input';
+import uuid from 'uuid';
+
+import Aux from '../../HOC/aux_x';
+import Backdrop from '../../UI/Backdrop/Backdrop';
+import Header from '../../UI/Header/Header';
+import PanelWrapper from '../../UI/PanelWrapper/PanelWrapper';
+import Paragraph from '../../UI/Paragraph/Paragraph';
+import DisplayRecipe from './DisplayRecipe/DisplayRecipe';
 import RecipeDetails from './RecipeDetails/RecipeDetails';
+import classes from './Recipes.css';
 
 export default class Recipes extends Component {
     state = {
         modalIsOpen: false,
-        selectedValue: 'Łatwy',
         showRecipeDetails: false,
+        showSearchBar: false,
+        selectedValue: 'Łatwy',
+        search: '',
         recipeName: '',
         recipeDescribe: '',
         url: '',
@@ -83,7 +87,6 @@ export default class Recipes extends Component {
     }
 
     showRecipeDetails = (recipeDescribe,recipeName, recipeUrl, calories, time, level) => {
-        console.log(recipeDescribe)
         this.setState({
             recipeName: recipeName,
             recipeDescribe: recipeDescribe,
@@ -99,12 +102,19 @@ export default class Recipes extends Component {
         this.setState({showRecipeDetails: !this.state.showRecipeDetails})
     }
 
+    toggleSearchBar = () => {
+        this.setState({showSearchBar: !this.state.showSearchBar})
+    }
+
     render() {
-        console.log(this.state.recipes)
         let displayRecipes = null;
 
         if (this.state.recipes.length !== 0) {
-            displayRecipes = this.state.recipes.map( recipe => {
+            displayRecipes = this.state.recipes
+            .filter(recipe => {
+                return recipe.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+            })
+            .map( recipe => {
                 return <DisplayRecipe
                 key={recipe.uid}
                 calories={recipe.calories}
@@ -121,7 +131,29 @@ export default class Recipes extends Component {
         return (
             <PanelWrapper wrapperType="DisplayFlex">
                 <Header>
-                    <Paragraph>Korzystaj z bazy przepisow naszych uzytkownikow lub podziel sie swoim wlasnym przepisem z innymi użytkownikami.</Paragraph>
+                    {this.state.showSearchBar ? null :
+                    <Aux>
+                        <div className={classes.Loup}>
+                            <i onClick={this.toggleSearchBar} className="fas fa-search"></i>
+                        </div>
+                        <Paragraph>
+                            Korzystaj z bazy przepisow na zdrowe dania i dziel się z innymi użytkownikami swoimi fit pomysłami na jedzenie .
+                            W naszej bazie znajduje się {this.state.recipes.length} przepisow.
+                        </Paragraph>
+                    </Aux>
+                    }
+                    {this.state.showSearchBar ? 
+                        <div className={classes.searchBar}>
+                            <DebounceInput
+                                className={classes.searchBarInput}
+                                minLength={1}
+                                debounceTimeout={300}
+                                placeholder="Wpisz nazwę przepisu, którego szukasz..."
+                                onChange={(event)=>this.setState({search: event.target.value})}
+                            />
+                            <i onClick={this.toggleSearchBar} class="fas fa-times"></i>
+                        </div>
+                    : null}
                 </Header>
                 {this.state.showRecipeDetails ? <RecipeDetails 
                     toggle={this.toggle} 
@@ -153,7 +185,7 @@ export default class Recipes extends Component {
                                 <option value="Trudny">Trudny</option>
                             </select>
                             <label htmlFor="recipeDescribe">Opis przepisu:</label>
-                            <textarea name="recipeDescribe" id="recipeDescribe" placeholder="Wymień składniki oraz kroki jak przygotować"></textarea>
+                            <textarea name="recipeDescribe" id="recipeDescribe" placeholder="Wymień składniki oraz kroki jak przygotować" required></textarea>
                             <button>Dodaj przepis</button>
                         </form>
                     </div>
