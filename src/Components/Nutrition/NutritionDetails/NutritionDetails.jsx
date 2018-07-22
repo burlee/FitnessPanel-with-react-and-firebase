@@ -69,7 +69,7 @@ export default class NutritionDetails extends Component {
                 chartData.datasets[0].data[3] = summaryCalories;
 
                 // this.setState({calories: summaryCalories})
-                this.setState({ chartData: chartData })
+                this.setState({ chartData })
             })
             .then(() => this.setState({ isLoading: true }))
             .catch(error => console.log(error))

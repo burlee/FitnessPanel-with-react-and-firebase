@@ -8,6 +8,7 @@ import NutritionIcon from '../../ASSETS/apple_icon.svg';
 import HeartIcon from '../../ASSETS/heart_icon.svg';
 import ProfilIcon from '../../ASSETS/profil_icon.svg';
 import SettingsIcon from '../../ASSETS/settings_icon.svg';
+import RecipeIcon from '../../ASSETS/recipe_icon.svg'
 //Application components
 import AccountSettings from '../AccountSettings/AccountSettings';
 import ActivityDetails from '../ActivityDetails/ActivityDetails';
@@ -21,6 +22,7 @@ import classes from './Navbar.css';
 // FIREBASE CONFIGURATION
 import FirebaseConfig from '../../Config/FirebaseConfig';
 import asyncComponent from '../../HOC/asyncComponent';
+import Recipes from '../Recipes/Recipes';
 
 //HOC async CHUNK
 const asyncNutritionDetails = asyncComponent(() => {
@@ -76,6 +78,7 @@ export default class Navbar extends Component {
                 <li><NavLink to="/nutrition"><img src={NutritionIcon} alt="Odżywanie" /></NavLink></li>
                 <li><NavLink to="/excercise"><img src={HeartIcon} alt="Ćwiczenia" /></NavLink></li>
                 <li><NavLink to="/activityDetails"><img src={ActivityIcon} alt="Aktywność użytkownika" /></NavLink></li>
+                <li><NavLink to="/recipes"><img src={RecipeIcon} alt="Przepisy" /></NavLink></li>
                 <li><NavLink to="/account"><img src={SettingsIcon} alt="Ustawienia" /></NavLink></li>
               </ul>
             </nav>
@@ -95,6 +98,7 @@ export default class Navbar extends Component {
             <Route path='/nutrition-details' component={asyncNutritionDetails} />
             <Route path='/excercise' component={Excercise} />
             <Route path='/activityDetails' component={ActivityDetails} />
+            <Route path='/recipes' component={Recipes} />
               {this.state.userExist ? null : <Route path='/profil' component={StartPanel} />}
             <Route path='/account' component={AccountSettings} />
           </Switch> : null}
