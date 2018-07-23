@@ -17,6 +17,7 @@ export default class Recipes extends Component {
         modalIsOpen: false,
         showRecipeDetails: false,
         showSearchBar: false,
+        displayNexPageBtn: 'block',
         selectedValue: 'Łatwy',
         search: '',
         recipeName: '',
@@ -25,10 +26,15 @@ export default class Recipes extends Component {
         time: '',
         calories: '',
         level: '',
-        recipes: []
+        recipes: [],
+        startRecipeArray: 0,
+        endRecipeArray: 16,
+        currentPage: 1
     }
 
     componentDidMount(){
+        window.addEventListener('scroll', this.handleScroll);
+
         const updateRecipes = [];
         axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/recipes.json`)
             .then(response => {
@@ -48,7 +54,14 @@ export default class Recipes extends Component {
             })
             .catch(error => console.log(error))
     }
-
+    handleScroll = () => {
+        let posY = window.scrollY;
+        if(posY > 400) {
+            this.setState({showNextPageBtn: true})
+        }else(
+            this.setState({showNextPageBtn: false})
+        )
+    }
     modalToggle = () => {
         this.setState({modalIsOpen: !this.state.modalIsOpen})
     }
@@ -56,6 +69,7 @@ export default class Recipes extends Component {
     selectedValueHandler = (event) => {
         this.setState({selectedValue: event.target.value})
     }
+
     recipeDetailsHandler = (event) =>{
         event.preventDefault();
         const recipeName = event.target.elements.name.value;
@@ -98,19 +112,42 @@ export default class Recipes extends Component {
         })
     }
 
-    toggle = () => {
+    toggleRecipeDetails = () => {
         this.setState({showRecipeDetails: !this.state.showRecipeDetails})
     }
 
     toggleSearchBar = () => {
-        this.setState({showSearchBar: !this.state.showSearchBar})
+        this.setState({
+            showSearchBar: !this.state.showSearchBar,
+            startRecipeArray: 0,
+            endRecipeArray: this.state.recipes.length,
+            showNextPageBtn: false,
+            displayNexPageBtn: 'none'
+        })
+    }
+
+    resetPaginationAndCloseSearch = () => {
+        this.setState({
+            search: '',
+            showSearchBar: !this.state.showSearchBar,
+            startRecipeArray: 0,
+            endRecipeArray: 16,
+            displayNexPageBtn: 'block'
+        })
+    }
+    pagination = () => {
+        const start = this.state.startRecipeArray;
+        const end = this.state.endRecipeArray;
+        this.setState({startRecipeArray: start + 16, endRecipeArray: end + 16})
     }
 
     render() {
         let displayRecipes = null;
+        const startRecipeArray = this.state.startRecipeArray;
+        const endRecipeArray = this.state.endRecipeArray;
 
         if (this.state.recipes.length !== 0) {
-            displayRecipes = this.state.recipes
+            displayRecipes = this.state.recipes.slice(startRecipeArray, endRecipeArray)
             .filter(recipe => {
                 return recipe.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
             })
@@ -127,7 +164,7 @@ export default class Recipes extends Component {
                 />
             })
         } 
-
+        
         return (
             <PanelWrapper wrapperType="DisplayFlex">
                 <Header>
@@ -137,8 +174,8 @@ export default class Recipes extends Component {
                             <i onClick={this.toggleSearchBar} className="fas fa-search"></i>
                         </div>
                         <Paragraph>
-                            Korzystaj z bazy przepisow na zdrowe dania i dziel się z innymi użytkownikami swoimi fit pomysłami na jedzenie .
-                            W naszej bazie znajduje się {this.state.recipes.length} przepisow.
+                            Dziel się swoimi fit przepisami z innymi użytkownikami lub znajdź coś dla siebie.
+                            Aktualnie w naszej bazie znajduje się {this.state.recipes.length} przepisów, więc na pewno coś wybierzesz.
                         </Paragraph>
                     </Aux>
                     }
@@ -151,12 +188,12 @@ export default class Recipes extends Component {
                                 placeholder="Wpisz nazwę przepisu, którego szukasz..."
                                 onChange={(event)=>this.setState({search: event.target.value})}
                             />
-                            <i onClick={this.toggleSearchBar} class="fas fa-times"></i>
+                            <i onClick={this.resetPaginationAndCloseSearch} className="fas fa-times"></i>
                         </div>
                     : null}
                 </Header>
                 {this.state.showRecipeDetails ? <RecipeDetails 
-                    toggle={this.toggle} 
+                    toggle={this.toggleRecipeDetails} 
                     show={this.state.showRecipeDetails} 
                     recipeName={this.state.recipeName}
                     url={this.state.url}
@@ -191,7 +228,8 @@ export default class Recipes extends Component {
                     </div>
                     <Backdrop show={this.state.modalIsOpen} modalClosed={this.modalToggle}/>
                 </Aux> : null}
-                <button onClick={this.modalToggle} className={classes.AddRecipeBtn}>Dodaj przepis</button>
+                <button style={{fontSize: '10px'}} onClick={this.modalToggle} className={classes.AddRecipeBtn}>Dodaj przepis</button>
+                {this.state.showNextPageBtn ? <button style={{fontSize: '10px', display: this.state.displayNexPageBtn}} onClick={this.pagination} className={classes.NexPageBtn}>Następna strona</button> : null}
             </PanelWrapper>
         )
     }

@@ -16,7 +16,7 @@
     background-size: 275px 245px;
 }
 .DisplayRecipe:hover{
-  transform: scale(1.05);
+  transform: scale(1.025);
 }
 .DisplayRecipe i {
     color: #4c4c4c;

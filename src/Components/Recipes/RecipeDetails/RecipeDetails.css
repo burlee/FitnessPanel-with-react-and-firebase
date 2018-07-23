@@ -8,11 +8,9 @@
     z-index: 1000;
     animation-name: slideInRight;
     animation-duration: 1s;
-    box-shadow: 0px 1px 3px #e7e7e7;
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-between; */
 }
 .RecipeDetails img{
     width: auto;

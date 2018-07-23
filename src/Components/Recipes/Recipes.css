@@ -12,6 +12,7 @@
     left: 0;
     animation-name: slideInDown;
     animation-duration: .5s;
+    z-index: 1;
 }
 .searchBar i {
     font-size: 40px;
@@ -19,10 +20,9 @@
     cursor: pointer;
 }
 .searchBarInput{
-    width: 50%;
+    width: 370px;
     height: 100px;
     font-size: 20px;
-    margin-left: 10px;
     border: none;
     background: none;
     outline: none;
@@ -36,8 +36,8 @@
     right: 20px;
     cursor: pointer;
     color: #4CAF50;
+    z-index: 1;
 }
-
 
 .AddRecipeBtn{
     position: fixed;
@@ -55,7 +55,24 @@
     cursor: pointer;
     outline: none;
 }
-
+.NexPageBtn{
+    position: fixed;
+    background-color: #4CAF50;
+    color: white;
+    width: 110px;
+    height: 40px;
+    border: none;
+    font-weight: bold;
+    font-size: 12px;
+    -webkit-box-shadow: 0px 2px 3px grey;
+    box-shadow: 0px 2px 3px grey;
+    bottom: 20px;
+    left: 120px;
+    cursor: pointer;
+    outline: none;
+    animation: slideInUp;
+    animation-duration: 0.5s;
+}
 .Modal{
     position: fixed;
     top: 50%;
@@ -138,6 +155,41 @@
     color: #4c4c4c;
     font-family: sans-serif;
 }
+@media only screen and (max-width: 768px) {
+    .searchBar{
+        justify-content: flex-start;
+    }
+    .searchBarInput{
+        margin-left: 20px;
+        width: 70%;
+    }
+}
+
+@-webkit-keyframes slideInUp {
+    from {
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+      visibility: visible;
+    }
+  
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
+  
+  @keyframes slideInUp {
+    from {
+      -webkit-transform: translate3d(0, 100%, 0);
+      transform: translate3d(0, 100%, 0);
+      visibility: visible;
+    }
+  
+    to {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  }
 
 @-webkit-keyframes slideInDown {
     from {
@@ -164,3 +216,8 @@
       transform: translate3d(0, 0, 0);
     }
   }
+
+  @keyframes openmodal{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
