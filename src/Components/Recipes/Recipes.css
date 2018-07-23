@@ -164,6 +164,12 @@
         width: 70%;
     }
 }
+@media only screen and (max-width: 559px) {
+    .searchBarInput{
+        width: 300px;
+        font-size: 16px;
+    }
+}
 
 @-webkit-keyframes slideInUp {
     from {

@@ -76,9 +76,9 @@ export default class Navbar extends Component {
               <ul>
                 <li><NavLink to="/"><img src={ProfilIcon} alt="Profil" /></NavLink></li>
                 <li><NavLink to="/nutrition"><img src={NutritionIcon} alt="Odżywanie" /></NavLink></li>
-                <li><NavLink to="/excercise"><img src={HeartIcon} alt="Ćwiczenia" /></NavLink></li>
-                <li><NavLink to="/activityDetails"><img src={ActivityIcon} alt="Aktywność użytkownika" /></NavLink></li>
                 <li><NavLink to="/recipes"><img src={RecipeIcon} alt="Przepisy" /></NavLink></li>
+                <li><NavLink to="/activityDetails"><img src={ActivityIcon} alt="Aktywność użytkownika" /></NavLink></li>
+                <li><NavLink to="/excercise"><img src={HeartIcon} alt="Ćwiczenia" /></NavLink></li>
                 <li><NavLink to="/account"><img src={SettingsIcon} alt="Ustawienia" /></NavLink></li>
               </ul>
             </nav>

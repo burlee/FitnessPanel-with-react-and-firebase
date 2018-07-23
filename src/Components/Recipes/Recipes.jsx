@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { DebounceInput } from 'react-debounce-input';
 import uuid from 'uuid';
-
 import Aux from '../../HOC/aux_x';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Header from '../../UI/Header/Header';
@@ -11,12 +10,15 @@ import Paragraph from '../../UI/Paragraph/Paragraph';
 import DisplayRecipe from './DisplayRecipe/DisplayRecipe';
 import RecipeDetails from './RecipeDetails/RecipeDetails';
 import classes from './Recipes.css';
+import SuccessRecipeAddedModal from './SuccessRecipeAddedModal/SuccesRecipeAddedModal';
+import Footer from '../../UI/Footer/Footer';
 
 export default class Recipes extends Component {
     state = {
         modalIsOpen: false,
         showRecipeDetails: false,
         showSearchBar: false,
+        successRecipeAddedModal: false,
         displayNexPageBtn: 'block',
         selectedValue: 'Łatwy',
         search: '',
@@ -94,9 +96,10 @@ export default class Recipes extends Component {
                 if(response.status === 200){
                     let recipes = [...this.state.recipes];
                     recipes.push(newRecipe);
-                    this.setState({recipes:recipes, modalIsOpen: false})
+                    this.setState({recipes:recipes, modalIsOpen: false, successRecipeAddedModal: true})
                 }
             })
+            .then(setTimeout(() => this.setState({successRecipeAddedModal: false}), 4500))
             .catch(error => console.log(error))
     }
 
@@ -135,12 +138,14 @@ export default class Recipes extends Component {
             displayNexPageBtn: 'block'
         })
     }
+
     pagination = () => {
         const start = this.state.startRecipeArray;
         const end = this.state.endRecipeArray;
         this.setState({startRecipeArray: start + 16, endRecipeArray: end + 16})
     }
 
+    
     render() {
         let displayRecipes = null;
         const startRecipeArray = this.state.startRecipeArray;
@@ -175,7 +180,7 @@ export default class Recipes extends Component {
                         </div>
                         <Paragraph>
                             Dziel się swoimi fit przepisami z innymi użytkownikami lub znajdź coś dla siebie.
-                            Aktualnie w naszej bazie znajduje się {this.state.recipes.length} przepisów, więc na pewno coś wybierzesz.
+                            Aktualnie w naszej bazie znajduje się {this.state.recipes.length} przepisów, więc na pewno wybierzesz coś dla siebie.
                         </Paragraph>
                     </Aux>
                     }
@@ -230,6 +235,8 @@ export default class Recipes extends Component {
                 </Aux> : null}
                 <button style={{fontSize: '10px'}} onClick={this.modalToggle} className={classes.AddRecipeBtn}>Dodaj przepis</button>
                 {this.state.showNextPageBtn ? <button style={{fontSize: '10px', display: this.state.displayNexPageBtn}} onClick={this.pagination} className={classes.NexPageBtn}>Następna strona</button> : null}
+                {this.state.successRecipeAddedModal ? <SuccessRecipeAddedModal/> : null}
+                <Footer/>
             </PanelWrapper>
         )
     }

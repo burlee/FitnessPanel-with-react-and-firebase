@@ -9,6 +9,7 @@ import FirebaseConfig from '../../../Config/FirebaseConfig'
 import PanelWrapper from '../../../UI/PanelWrapper/PanelWrapper';
 import Backdrop from '../../../UI/Backdrop/Backdrop';
 import StartWeight from './DetailBox/StartWeight/StartWeight';
+import Recipes from './DetailBox/Recipes/Recipes'
 import CaloriesSummary from './DetailBox/CaloriesSummary/CaloriesSummary';
 import Macronutrients from './DetailBox/Macronutrients/Macronutrients';
 import BMI from './DetailBox/BMI/BMI';
@@ -112,6 +113,7 @@ export default class CompletePanel extends Component {
                 <CaloriesSummary/>
                 <PDF/>
                 <Macronutrients/>
+                <Recipes/>
                 <WeightProgress currentWeight={this.state.currentWeight}/>
                 <StartWeight/>
                 <BMI showTable={this.state.showTable} showTableFn={this.showTable} BMI={this.state.BMI}/>

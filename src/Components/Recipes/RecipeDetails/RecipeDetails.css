@@ -27,7 +27,7 @@
     text-align: center;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    font-size: 25px;
+    font-size: 18px;
 }
 .RecipeDetails h4{
     color: #808080;
@@ -51,6 +51,14 @@
     font-size: 12px;
     margin-top: 15px;
   }
+
+
+  @media only screen and (max-width: 899px) {
+    .RecipeDetails{
+      width: 65%;
+    }
+}
+
 @-webkit-keyframes slideInRight {
     from {
       -webkit-transform: translate3d(100%, 0, 0);

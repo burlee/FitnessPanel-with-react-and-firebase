@@ -1,0 +1,26 @@
+.SuccesModal{
+    background: #4caf50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 315px;
+    height: 120px;
+    z-index: 998;
+    border-radius: 3px;
+    box-sizing: border-box;
+    color: #fff;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+    animation-duration: 0.5s;
+    transform: translate(-30%,-50%);
+    animation-name: openmodal;
+    animation-duration: .5s;
+}
+
+@keyframes openmodal{
+    from{opacity: 0;}
+    to{opacity: 1;}
+}
