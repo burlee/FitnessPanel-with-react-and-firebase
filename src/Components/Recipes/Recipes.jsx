@@ -6,7 +6,6 @@ import Aux from '../../HOC/aux_x';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Header from '../../UI/Header/Header';
 import PanelWrapper from '../../UI/PanelWrapper/PanelWrapper';
-import Paragraph from '../../UI/Paragraph/Paragraph';
 import DisplayRecipe from './DisplayRecipe/DisplayRecipe';
 import RecipeDetails from './RecipeDetails/RecipeDetails';
 import Spinner from '../../UI/Spinner/Spinner'
@@ -182,10 +181,10 @@ export default class Recipes extends Component {
                         <div className={classes.Loup}>
                             <i onClick={this.toggleSearchBar} className="fas fa-search"></i>
                         </div>
-                        <Paragraph>
+                        <p style={{width: '80%', margin: '0 auto'}}>
                             Dziel się swoimi fit przepisami z innymi użytkownikami lub znajdź coś dla siebie.
                             Aktualnie w naszej bazie znajduje się {this.state.recipes.length} przepisów, więc na pewno wybierzesz coś dla siebie.
-                        </Paragraph>
+                        </p>
                     </Aux>
                     }
                     {this.state.showSearchBar ? 

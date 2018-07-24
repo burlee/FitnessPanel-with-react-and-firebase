@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import PanelWrapper from '../../UI/PanelWrapper/PanelWrapper';
 import ExerciseOne from './ExerciseOne/ExerciseOne';
 import ExerciseTwo from './ExerciseTwo/ExerciseTwo';
-import ExerciseThree from './ExerciseThree/ExerciseThree';
-import Header from '../../UI/Header/Header'
+import Header from '../../UI/Header/Header';
+import Footer from '../../UI/Footer/Footer'
 
 
 export default class Excercise extends Component {
     state = {
         excerciseOneDone: false,
-        excerciseTwoDone: false,
-        excerciseThreeDone: false
+        excerciseTwoDone: false
     }
     excerciseOneDoneFn = () => {
         const excerciseOneDone = !this.state.excerciseOneDone;
@@ -28,14 +27,6 @@ export default class Excercise extends Component {
             localStorage.removeItem('exerciseTwo')
         }
     }
-    excerciseThreeDoneFn = () => {
-        const excerciseThreeDone = !this.state.excerciseThreeDone;
-        this.setState({ excerciseThreeDone: excerciseThreeDone })
-        localStorage.setItem('exerciseThree', '3');
-        if (this.state.excerciseThreeDone) {
-            localStorage.removeItem('exerciseThree')
-        }
-    }
     
     render() {
         return (
@@ -49,10 +40,7 @@ export default class Excercise extends Component {
                     excerciseTwoDone={this.state.excerciseTwoDone}
                     excerciseTwoDoneFn={this.excerciseTwoDoneFn}
                 />
-                <ExerciseThree
-                    excerciseThreeDone={this.state.excerciseThreeDone}
-                    excerciseThreeDoneFn={this.excerciseThreeDoneFn}
-                />
+                <Footer/>
             </PanelWrapper>
         )
     }

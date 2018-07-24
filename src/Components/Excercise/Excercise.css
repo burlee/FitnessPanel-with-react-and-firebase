@@ -1,19 +1,49 @@
 .Excercise{
     box-shadow: 0px 1px 3px #808080;
-    width: 250px;
-    height: 48vh;
     margin: 5px;
     border-radius: 3px;
     transition: all 1s ease;
+    width: 500px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
-.Excercise h5{
-    text-align: center;
+.ExerciseContainer_1{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.ExerciseContainer_2{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
+}
+.ExerciseContainer_3{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.Excercise p {
+    margin: 0;
+    width: 75%;
+    line-height: 1.2;
+    text-align: justify;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 12px;
     color: #4c4c4c;
 }
-.Excercise li{
-    list-style: none;
-    padding: 5px;
-    text-align: center;
+.ExcerciseDone p{
+    margin: 0;
+    width: 75%;
+    line-height: 1.2;
+    text-align: justify;
+    padding: 15px;
+    box-sizing: border-box;
     font-size: 12px;
     color: #4c4c4c;
 }
@@ -31,21 +61,32 @@
     font-size: 12px;
     color: white;
     font-weight: bold;
-    margin-top: 10px;
+    margin-bottom: 5px;
 }
-
+.Excercise img{
+    width: 70px;
+    height: 70px;
+    background: #4caf50;
+    border-radius: 3px;
+}
+.ExcerciseDone img{
+    width: 70px;
+    height: 70px;
+    background: #4caf50;
+    border-radius: 3px;
+}
 .ExcerciseDone{
-    width: 250px;
-    height: 48vh;
+    box-shadow: 0px 1px 3px #808080;
     margin: 5px;
     border-radius: 3px;
-    box-shadow: 0px 1px 3px #808080;
+    transition: all 1s ease;
+    width: 500px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
-.ExcerciseDone h5{
-    color: #4caf50;
-    text-align: center;
-}
 .ExcerciseDone button{
     margin-left: auto;
     margin-right: auto;
@@ -63,13 +104,6 @@
     margin-top: 10px;
 }
 
-.ExcerciseDone li{
-    list-style: none;
-    padding: 5px;
-    text-align: center;
-    font-size: 12px;
-    color: #4c4c4c;
-}
 .Movie{
     position: fixed;
     top: 50%;
