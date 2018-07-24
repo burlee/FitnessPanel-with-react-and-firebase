@@ -9,6 +9,7 @@ import PanelWrapper from '../../UI/PanelWrapper/PanelWrapper';
 import Paragraph from '../../UI/Paragraph/Paragraph';
 import DisplayRecipe from './DisplayRecipe/DisplayRecipe';
 import RecipeDetails from './RecipeDetails/RecipeDetails';
+import Spinner from '../../UI/Spinner/Spinner'
 import classes from './Recipes.css';
 import SuccessRecipeAddedModal from './SuccessRecipeAddedModal/SuccesRecipeAddedModal';
 import Footer from '../../UI/Footer/Footer';
@@ -19,6 +20,7 @@ export default class Recipes extends Component {
         showRecipeDetails: false,
         showSearchBar: false,
         successRecipeAddedModal: false,
+        isLoading: true,
         displayNexPageBtn: 'block',
         selectedValue: 'Łatwy',
         search: '',
@@ -28,6 +30,7 @@ export default class Recipes extends Component {
         time: '',
         calories: '',
         level: '',
+        recipeID: '',
         recipes: [],
         startRecipeArray: 0,
         endRecipeArray: 16,
@@ -51,7 +54,7 @@ export default class Recipes extends Component {
                         recipeDescribe: mealFromDB[key].recipeDescribe,
                         level: mealFromDB[key].level
                     })
-                    this.setState({ recipes: updateRecipes})
+                    this.setState({ recipes: updateRecipes, isLoading: false})
                 }
             })
             .catch(error => console.log(error))
@@ -103,7 +106,7 @@ export default class Recipes extends Component {
             .catch(error => console.log(error))
     }
 
-    showRecipeDetails = (recipeDescribe,recipeName, recipeUrl, calories, time, level) => {
+    showRecipeDetails = (recipeDescribe,recipeName, recipeUrl, calories, time, level, recipeID) => {
         this.setState({
             recipeName: recipeName,
             recipeDescribe: recipeDescribe,
@@ -111,6 +114,7 @@ export default class Recipes extends Component {
             calories: calories,
             time: time,
             level: level,
+            recipeID: recipeID,
             showRecipeDetails: true
         })
     }
@@ -165,7 +169,7 @@ export default class Recipes extends Component {
                 url={recipe.url}
                 level={recipe.level}
                 recipeDescribe={recipe.recipeDescribe}
-                showRecipeDetails={() => this.showRecipeDetails(recipe.recipeDescribe, recipe.name, recipe.url, recipe.calories, recipe.time, recipe.level)}
+                showRecipeDetails={() => this.showRecipeDetails(recipe.recipeDescribe, recipe.name, recipe.url, recipe.calories, recipe.time, recipe.level,recipe.uid)}
                 />
             })
         } 
@@ -206,6 +210,7 @@ export default class Recipes extends Component {
                     time={this.state.time}
                     calories={this.state.calories}
                     level={this.state.level}
+                    recipeID={this.state.recipeID}
                     /> : null}
                 {displayRecipes}
                 {this.state.modalIsOpen ? 
@@ -236,6 +241,7 @@ export default class Recipes extends Component {
                 <button style={{fontSize: '10px'}} onClick={this.modalToggle} className={classes.AddRecipeBtn}>Dodaj przepis</button>
                 {this.state.showNextPageBtn ? <button style={{fontSize: '10px', display: this.state.displayNexPageBtn}} onClick={this.pagination} className={classes.NexPageBtn}>Następna strona</button> : null}
                 {this.state.successRecipeAddedModal ? <SuccessRecipeAddedModal/> : null}
+                {this.state.isLoading ? <Spinner/> : null}
                 <Footer/>
             </PanelWrapper>
         )
