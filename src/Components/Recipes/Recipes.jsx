@@ -15,12 +15,12 @@ import Footer from '../../UI/Footer/Footer';
 
 export default class Recipes extends Component {
     state = {
+        recipesNotExist: false,
         modalIsOpen: false,
         showRecipeDetails: false,
         showSearchBar: false,
         successRecipeAddedModal: false,
         isLoading: true,
-        displayNexPageBtn: 'block',
         selectedValue: 'Łatwy',
         search: '',
         recipeName: '',
@@ -59,15 +59,6 @@ export default class Recipes extends Component {
             .catch(error => console.log(error))
     }
 
-    handleScroll = () => {
-        let posY = window.scrollY;
-        if(posY > 400) {
-            this.setState({showNextPageBtn: true})
-        }else(
-            this.setState({showNextPageBtn: false})
-        )
-    }
-
     modalToggle = () => {
         this.setState({modalIsOpen: !this.state.modalIsOpen})
     }
@@ -100,7 +91,11 @@ export default class Recipes extends Component {
                 if(response.status === 200){
                     let recipes = [...this.state.recipes];
                     recipes.push(newRecipe);
-                    this.setState({recipes:recipes, modalIsOpen: false, successRecipeAddedModal: true})
+                    this.setState({
+                        recipes:recipes, 
+                        modalIsOpen: false, 
+                        successRecipeAddedModal: true
+                    })
                 }
             })
             .then(setTimeout(() => this.setState({successRecipeAddedModal: false}), 4500))
@@ -145,11 +140,25 @@ export default class Recipes extends Component {
     }
 
     pagination = () => {
+        const oldCurrentPage = this.state.currentPage;
+        this.setState({currentPage: oldCurrentPage + 1});
+
+        let recipesArrayLength = this.state.recipes.length;
+
+        //Show back to home button if next page is empty.
+        if((recipesArrayLength - this.state.currentPage * 16) <= 0){
+            this.setState({recipesNotExist: true})
+        }else(this.setState({recipesNotExist: false}))
+
         const start = this.state.startRecipeArray;
         const end = this.state.endRecipeArray;
         this.setState({startRecipeArray: start + 16, endRecipeArray: end + 16})
     }
 
+    backToHome = () => {
+        console.log('Cześć')
+        this.setState({startRecipeArray: 0, endRecipeArray: 16, recipesNotExist: false, currentPage: 1})
+    }
     
     render() {
         let displayRecipes = null;
@@ -240,7 +249,9 @@ export default class Recipes extends Component {
                     <Backdrop show={this.state.modalIsOpen} modalClosed={this.modalToggle}/>
                 </Aux> : null}
                 <button style={{fontSize: '10px'}} onClick={this.modalToggle} className={classes.AddRecipeBtn}>Dodaj przepis</button>
-                {this.state.showNextPageBtn ? <button style={{fontSize: '10px', display: this.state.displayNexPageBtn}} onClick={this.pagination} className={classes.NexPageBtn}>Następna strona</button> : null}
+                
+                {this.state.recipesNotExist ? null : <button style={{fontSize: '10px'}} onClick={this.pagination} className={classes.NexPageBtn}>Następna strona</button> }
+                {this.state.recipesNotExist ? <button style={{fontSize: '10px'}} onClick={this.backToHome} className={classes.NexPageBtn}>Wróć</button> : null }
                 {this.state.successRecipeAddedModal ? <SuccessRecipeAddedModal/> : null}
                 {this.state.isLoading ? <Spinner/> : null}
                 <Footer/>
