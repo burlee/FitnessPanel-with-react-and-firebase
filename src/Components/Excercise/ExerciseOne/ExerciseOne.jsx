@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import classes from '../Excercise.css'
 import Aux from '../../../HOC/aux_x'
 import Backdrop from '../../../UI/Backdrop/Backdrop'
-import FitnessPicture_1 from '../../../ASSETS/FitnessIcon/Fitness_gym_gymnastic_health_exercise_sport_jump_rope-512.png'
-import FitnessPicture_2 from '../../../ASSETS/FitnessIcon/Fitness_gym_gymnastic_health_exercise_sport_fitness-512 (1).png'
-import FitnessPicture_3 from '../../../ASSETS/FitnessIcon/skosne.png'
+import FitnessPicture_1 from '../../../ASSETS/FitnessIcon/img_1.png'
+import FitnessPicture_2 from '../../../ASSETS/FitnessIcon/img_2.png'
+import FitnessPicture_3 from '../../../ASSETS/FitnessIcon/img_3.png'
 
 export default class ExerciseOne extends Component {
   state = {

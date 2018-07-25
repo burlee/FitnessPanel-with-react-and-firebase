@@ -31,7 +31,7 @@ export default class Excercise extends Component {
     render() {
         return (
             <PanelWrapper wrapperType='DisplayFlex'>
-                <Header><p>Kluczem do wymarzonej sylwetki są dieta i regularne ćwiczenia.Wykonuj ten zestaw ćwiczeń każdego dnia</p></Header>
+                <Header><p>Kluczem do wymarzonej sylwetki są dieta i regularne ćwiczenia.Wykonuj ten zestaw ćwiczeń każdego dnia, aby zapewnić swojemu organizmowi minimalny wysiłek.</p></Header>
                 <ExerciseOne
                     excerciseOneDone={this.state.excerciseOneDone}
                     excerciseOneDoneFn={this.excerciseOneDoneFn}

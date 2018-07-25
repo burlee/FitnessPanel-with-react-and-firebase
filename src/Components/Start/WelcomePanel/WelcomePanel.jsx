@@ -7,7 +7,7 @@ class WelcomePanel extends Component {
     return (
       <div className={classes.WelcomePanel}>
         <h2>Witaj w FitnessPanel</h2> <br />
-        <p>Rozpocznij swoją przygodę z fitnessem, podaj kilka niezbędnych informacji o sobie, a my obliczymy twoje prawidłowe BMI oraz ilość kalori jaką powinieneś spożywać każdego dnia.</p>
+        <p>Rozpocznij swoją przygodę z fitnessem, podaj kilka niezbędnych informacji o sobie, a my obliczymy twoje prawidłowe BMI oraz ilość kalorii jaką powinieneś spożywać każdego dnia.</p>
         <Button clicked={this.props.clicked}>Przejdź dalej</Button>
       </div>
     )

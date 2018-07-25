@@ -97,7 +97,6 @@ export default class CompletePanel extends Component {
 
         this.setState({showWeightInput: false})
         axios.put(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/userWeight.json`, userWeight)
-
     }
    
     render() {

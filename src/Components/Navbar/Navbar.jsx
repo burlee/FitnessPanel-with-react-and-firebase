@@ -34,7 +34,6 @@ export default class Navbar extends Component {
     userIsLoggin: false,
     userExist: false,
     leftPosition: 0,
-    showCounter: -100,
     currentUserIdFB: null
   }
 

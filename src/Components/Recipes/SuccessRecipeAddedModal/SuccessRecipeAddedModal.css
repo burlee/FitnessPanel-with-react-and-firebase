@@ -19,6 +19,7 @@
     animation-duration: .5s;
 }
 .SuccesModal p {
+    font-size: 12px;
     color: #fff;
 }
 
