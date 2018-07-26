@@ -48,8 +48,8 @@
     border: none;
     font-weight: bold;
     font-size: 12px;
-    -webkit-box-shadow: 0px 2px 3px grey;
-    box-shadow: 0px 2px 3px grey;
+    -webkit-box-shadow: 0px 2px 3px rgba(76, 175, 79, 0.5);
+    box-shadow: 0px 2px 3px rgba(76, 175, 79, 0.5);
     bottom: 20px;
     right: 20px;
     cursor: pointer;
@@ -64,8 +64,8 @@
     border: none;
     font-weight: bold;
     font-size: 12px;
-    -webkit-box-shadow: 0px 2px 3px grey;
-    box-shadow: 0px 2px 3px grey;
+    -webkit-box-shadow: 0px 2px 3px rgba(76, 175, 79, 0.5);
+    box-shadow: 0px 2px 3px rgba(76, 175, 79, 0.5);
     bottom: 20px;
     left: 120px;
     cursor: pointer;
@@ -157,6 +157,24 @@
     font-size: 12px;
     color: #4c4c4c;
     font-family: sans-serif;
+}
+.SortingByCaloriesBtn{
+    border: none;
+    border-radius: 3px;
+    background: gray;
+    color: white;
+    font-size: 10px;
+    font-weight: bold;
+    outline:none;
+    box-shadow: 0px 2px 3px grey;
+    cursor: pointer;
+    margin-right: 5px;
+    margin-top: 15px;
+    height: 35px;
+}
+.SortBox{
+    display: flex;
+    justify-content: center;
 }
 @media only screen and (max-width: 768px) {
     .searchBar{

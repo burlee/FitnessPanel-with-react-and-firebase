@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { DebounceInput } from 'react-debounce-input';
 import uuid from 'uuid';
-
 import Aux from '../../HOC/aux_x';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 import Footer from '../../UI/Footer/Footer';
@@ -13,6 +12,7 @@ import DisplayRecipe from './DisplayRecipe/DisplayRecipe';
 import RecipeDetails from './RecipeDetails/RecipeDetails';
 import classes from './Recipes.css';
 import SuccessRecipeAddedModal from './SuccessRecipeAddedModal/SuccesRecipeAddedModal';
+import Box from '../../UI/Box/Box';
 
 export default class Recipes extends Component {
     state = {
@@ -41,6 +41,7 @@ export default class Recipes extends Component {
     componentDidMount(){
 
         const updateRecipes = [];
+            
         axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/recipes.json`)
             .then(response => {
                 let mealFromDB = response.data;
@@ -68,6 +69,68 @@ export default class Recipes extends Component {
                 }
             })
             .catch(error => console.log(error))
+    }
+    sortingByCaloriesMore = () => {
+        const recipes = [...this.state.recipes];
+        let sortingByCalories = recipes.sort((a, b) => {
+            let tA = parseFloat(a.calories);
+            let tB = parseFloat(b.calories);
+            if (tA < tB) {
+              return 1;
+            }
+            if (tA > tB) {
+              return -1;
+            }
+            return 0;
+            })
+        this.setState({recipes: sortingByCalories})
+    }
+    sortingByCaloriesLess = () => {
+        const recipes = [...this.state.recipes];
+        let sortingByCalories = recipes.sort((a, b) => {
+            let tA = parseFloat(a.calories);
+            let tB = parseFloat(b.calories);
+            if (tA < tB) {
+              return -1;
+            }
+            if (tA > tB) {
+              return 1;
+            }
+            return 0;
+            })
+        this.setState({recipes: sortingByCalories})
+    }
+
+    sortingByTimeMore = () => {
+        const recipes = [...this.state.recipes];
+        let sortingByCalories = recipes.sort((a, b) => {
+            let tA = parseFloat(a.time);
+            let tB = parseFloat(b.time);
+            if (tA < tB) {
+              return 1;
+            }
+            if (tA > tB) {
+              return -1;
+            }
+            return 0;
+            })
+        this.setState({recipes: sortingByCalories})
+    }
+
+    sortingByTimeLess = () =>{
+        const recipes = [...this.state.recipes];
+        let sortingByCalories = recipes.sort((a, b) => {
+            let tA = parseFloat(a.time);
+            let tB = parseFloat(b.time);
+            if (tA < tB) {
+              return -1;
+            }
+            if (tA > tB) {
+              return 1;
+            }
+            return 0;
+            })
+        this.setState({recipes: sortingByCalories})
     }
 
     modalToggle = () => {
@@ -167,7 +230,7 @@ export default class Recipes extends Component {
         this.setState({startRecipeArray: start + 16, endRecipeArray: end + 16})
     }
 
-    backToHome = () => {
+    backToFirsPage = () => {
         this.setState({
             startRecipeArray: 0, 
             endRecipeArray: 16, 
@@ -208,10 +271,16 @@ export default class Recipes extends Component {
                         <div className={classes.Loup}>
                             <i onClick={this.toggleSearchBar} className="fas fa-search"></i>
                         </div>
-                        <p style={{width: '80%', margin: '0 auto', lineHeight: '1.3'}}>
+                        <p style={{width: '80%', margin: '0 auto', lineHeight: '1.3', padding: '10px', boxSizing:'border-box'}}>
                             Dziel się swoimi fit przepisami z innymi użytkownikami lub znajdź coś dla siebie. Przejście na dietę to nie tylko nudne dania, zobacz jak można zdrowo się odżywiać komponując posiłki ze zdrowych produktów.
                             Aktualnie w naszej bazie znajduje się {this.state.recipes.length} przepisów, więc na pewno wybierzesz coś dla siebie.
                         </p>
+                        <div className={classes.SortBox}>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByCaloriesLess}>Sortuj po kaloryczności <i style={{fontSize: '12px'}} class="fas fa-sort-up"></i></button>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByCaloriesMore}>Sortuj po kaloryczności <i style={{fontSize: '12px'}} class="fas fa-sort-down"></i></button>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByTimeLess}>Czas przygotowania <i style={{fontSize: '12px'}} class="fas fa-sort-up"></i></button>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByTimeMore}>Czas przygotowania <i style={{fontSize: '12px'}} class="fas fa-sort-down"></i></button>
+                        </div>
                     </Aux>
                     }
                     {this.state.showSearchBar ? 
@@ -238,6 +307,7 @@ export default class Recipes extends Component {
                     level={this.state.level}
                     recipeID={this.state.recipeID}
                     /> : null}
+                <Box/>
                 {displayRecipes}
                 {this.state.modalIsOpen ? 
                 <Aux>
@@ -267,7 +337,7 @@ export default class Recipes extends Component {
                 <button style={{fontSize: '10px'}} onClick={this.modalToggle} className={classes.AddRecipeBtn}>Dodaj przepis</button>
                 
                 {this.state.recipesNotExist ? null : <button style={{fontSize: '10px'}} onClick={this.pagination} className={classes.NexPageBtn}>Następna strona</button> }
-                {this.state.recipesNotExist ? <button style={{fontSize: '10px'}} onClick={this.backToHome} className={classes.NexPageBtn}>Wróć</button> : null }
+                {this.state.recipesNotExist ? <button style={{fontSize: '10px'}} onClick={this.backToFirsPage} className={classes.NexPageBtn}>Wróć</button> : null }
                 {this.state.successRecipeAddedModal ? <SuccessRecipeAddedModal/> : null}
                 {this.state.isLoading ? <Spinner/> : null}
                 <Footer/>
