@@ -1,12 +1,12 @@
 import axios from 'axios';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import FirebaseConfig from '../../../Config/FirebaseConfig';
 import Aux from '../../../HOC/aux_x';
 import Backdrop from '../../../UI/Backdrop/Backdrop';
 import Footer from '../../../UI/Footer/Footer'
 import classes from './RecipeDetails.css';
 
-export default class RecipeDetails extends Component {
+export default class RecipeDetails extends PureComponent {
     state = {
         currentUser: FirebaseConfig.auth().currentUser.uid,
         recipeID: this.props.recipeID,
@@ -58,7 +58,10 @@ export default class RecipeDetails extends Component {
             rate: this.state.rate + 1
         }
 
-        const currentUser = { currentUser: this.state.currentUser, recipeID: this.state.recipeID }
+        const currentUser = { 
+            currentUser: this.state.currentUser, 
+            recipeID: this.state.recipeID 
+        }
 
         axios.post(`https://fitnesspanel-eb7a2.firebaseio.com/userLikeItList/${this.state.currentUser}.json`, currentUser)
 

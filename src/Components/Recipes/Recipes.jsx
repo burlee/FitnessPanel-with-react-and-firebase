@@ -2,16 +2,17 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import { DebounceInput } from 'react-debounce-input';
 import uuid from 'uuid';
+
 import Aux from '../../HOC/aux_x';
 import Backdrop from '../../UI/Backdrop/Backdrop';
+import Footer from '../../UI/Footer/Footer';
 import Header from '../../UI/Header/Header';
 import PanelWrapper from '../../UI/PanelWrapper/PanelWrapper';
+import Spinner from '../../UI/Spinner/Spinner';
 import DisplayRecipe from './DisplayRecipe/DisplayRecipe';
 import RecipeDetails from './RecipeDetails/RecipeDetails';
-import Spinner from '../../UI/Spinner/Spinner'
 import classes from './Recipes.css';
 import SuccessRecipeAddedModal from './SuccessRecipeAddedModal/SuccesRecipeAddedModal';
-import Footer from '../../UI/Footer/Footer';
 
 export default class Recipes extends Component {
     state = {
@@ -31,13 +32,13 @@ export default class Recipes extends Component {
         level: '',
         recipeID: '',
         recipes: [],
+        placeholder: ``,
         startRecipeArray: 0,
         endRecipeArray: 16,
         currentPage: 1
     }
 
     componentDidMount(){
-        window.addEventListener('scroll', this.handleScroll);
 
         const updateRecipes = [];
         axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/recipes.json`)
@@ -53,7 +54,17 @@ export default class Recipes extends Component {
                         recipeDescribe: mealFromDB[key].recipeDescribe,
                         level: mealFromDB[key].level
                     })
-                    this.setState({ recipes: updateRecipes, isLoading: false})
+                    this.setState({ recipes: updateRecipes.sort((a, b) => {
+                        let tA = a.name.toUpperCase();
+                        let tB = b.name.toUpperCase();
+                        if (tA < tB) {
+                          return -1;
+                        }
+                        if (tA > tB) {
+                          return 1;
+                        }
+                        return 0;
+                        }), isLoading: false})
                 }
             })
             .catch(error => console.log(error))
@@ -121,6 +132,7 @@ export default class Recipes extends Component {
 
     toggleSearchBar = () => {
         this.setState({
+            placeholder:`Wyszukaj wśród ${this.state.recipes.length} przepisów...`,
             showSearchBar: !this.state.showSearchBar,
             startRecipeArray: 0,
             endRecipeArray: this.state.recipes.length,
@@ -156,8 +168,12 @@ export default class Recipes extends Component {
     }
 
     backToHome = () => {
-        console.log('Cześć')
-        this.setState({startRecipeArray: 0, endRecipeArray: 16, recipesNotExist: false, currentPage: 1})
+        this.setState({
+            startRecipeArray: 0, 
+            endRecipeArray: 16, 
+            recipesNotExist: false, 
+            currentPage: 1
+        })
     }
     
     render() {
@@ -204,7 +220,7 @@ export default class Recipes extends Component {
                                 className={classes.searchBarInput}
                                 minLength={1}
                                 debounceTimeout={300}
-                                placeholder="Wpisz nazwę przepisu, którego szukasz..."
+                                placeholder={this.state.placeholder}
                                 onChange={(event)=>this.setState({search: event.target.value})}
                             />
                             <i onClick={this.resetPaginationAndCloseSearch} className="fas fa-times"></i>

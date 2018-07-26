@@ -5,7 +5,7 @@
     animation: openmodal;
     animation-duration: 1.1s;
 }
-.FormStyle input[type=text] {
+.FormStyle input[type=text], .FormStyle input[type=number] {
     width: 100%;
     height: 35px;
     outline: none;
@@ -21,7 +21,7 @@
     padding: 15px;
     border: 1px solid rgba(128, 128, 128, 0.04);
 }
-.FormStyle input[type=text]:focus {
+.FormStyle input[type=text]:focus, .FormStyle input[type=number]:focus {
     width: 100%;
     height: 35px;
     outline: none;
