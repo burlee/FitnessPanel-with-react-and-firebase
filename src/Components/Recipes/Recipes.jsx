@@ -40,7 +40,6 @@ export default class Recipes extends Component {
     }
 
     componentDidMount(){
-
         const updateRecipes = [];
             
         axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/recipes.json`)
@@ -70,6 +69,7 @@ export default class Recipes extends Component {
                 }
             })
             .catch(error => console.log(error))
+
     }
     sortingByCaloriesMore = () => {
         const recipes = [...this.state.recipes];
@@ -197,7 +197,7 @@ export default class Recipes extends Component {
     toggleSearchBar = () => {
         this.setState({
             displayBox: true,
-            placeholder:`Wyszukaj wśród ${this.state.recipes.length} przepisów...`,
+            placeholder:`Wyszukaj pośród ${this.state.recipes.length} przepisów...`,
             showSearchBar: !this.state.showSearchBar,
             startRecipeArray: 0,
             endRecipeArray: this.state.recipes.length,
@@ -279,10 +279,10 @@ export default class Recipes extends Component {
                             Aktualnie w naszej bazie znajduje się {this.state.recipes.length} przepisów, więc na pewno wybierzesz coś dla siebie.
                         </p>
                         <div className={classes.SortBox}>
-                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByCaloriesLess}>Kaloryczność <i style={{fontSize: '12px'}} class="fas fa-sort-up"></i></button>
-                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByCaloriesMore}>Kaloryczność <i style={{fontSize: '12px'}} class="fas fa-sort-down"></i></button>
-                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByTimeLess}>Czas <i style={{fontSize: '12px'}} class="fas fa-sort-up"></i></button>
-                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByTimeMore}>Czas <i style={{fontSize: '12px'}} class="fas fa-sort-down"></i></button>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByCaloriesLess}>Kaloryczność <i style={{fontSize: '12px'}} className="fas fa-sort-up"></i></button>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByCaloriesMore}>Kaloryczność <i style={{fontSize: '12px'}} className="fas fa-sort-down"></i></button>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByTimeLess}>Czas <i style={{fontSize: '12px'}} className="fas fa-sort-up"></i></button>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByTimeMore}>Czas <i style={{fontSize: '12px'}} className="fas fa-sort-down"></i></button>
                         </div>
                     </Aux>
                     }

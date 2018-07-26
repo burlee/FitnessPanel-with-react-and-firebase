@@ -21,6 +21,7 @@ export default class StartPanel extends PureComponent {
     }
 
     getPersonDetails = (event) => {
+
         event.preventDefault();
         const name = event.target.elements.name.value;
         const age = event.target.elements.age.value;
@@ -47,6 +48,7 @@ export default class StartPanel extends PureComponent {
         axios.post(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/user.json`, user)
             .then(response => {
                 if (response.status === 200) {
+
                     this.props.history.push('/')
                 }
             })

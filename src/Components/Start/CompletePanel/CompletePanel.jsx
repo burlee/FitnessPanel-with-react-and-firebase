@@ -16,6 +16,7 @@ import BMI from './DetailBox/BMI/BMI';
 import WeightProgress from './DetailBox/WeightProgress/WeightProgress'
 import PDF from './DetailBox/PDF/PDF';
 import Spinner from '../../../UI/Spinner/Spinner';
+import RecipesLikeBox from './DetailBox/RecipesLikeBox/RecipesLikeBox';
 
 export default class CompletePanel extends Component {
     state ={
@@ -30,7 +31,8 @@ export default class CompletePanel extends Component {
         showTable: false,
         showWeightInput: false,
         weightValue: null,
-        spinnerLoader: true
+        spinnerLoader: true,
+        recipesLike: ''
     }
 
     showWeightBtn = () => {
@@ -38,7 +40,8 @@ export default class CompletePanel extends Component {
         this.setState({showWeightInput})
     }
 
-    componentDidMount(){
+    componentDidMount(){            
+
             axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/user.json`)
             .then(response => {
                 for(let key in response.data){
@@ -113,6 +116,7 @@ export default class CompletePanel extends Component {
                 <PDF/>
                 <Macronutrients/>
                 <Recipes/>
+                <RecipesLikeBox/>
                 <WeightProgress currentWeight={this.state.currentWeight}/>
                 <StartWeight/>
                 <BMI showTable={this.state.showTable} showTableFn={this.showTable} BMI={this.state.BMI}/>
