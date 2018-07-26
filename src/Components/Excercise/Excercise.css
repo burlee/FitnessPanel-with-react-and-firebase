@@ -123,5 +123,21 @@
     color: #4c4c4c;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
+@media only screen and (max-width: 486px) {
+    .Excercise{
+        height: 600px;
+    }
+    .ExcerciseDone{
+        height: 600px;
+    }
+}
 
+@media only screen and (max-width: 430px) {
+    .Excercise{
+        height: 900px;
+    }
+    .ExcerciseDone{
+        height: 900px;
+    }
+}
 

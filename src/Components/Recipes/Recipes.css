@@ -171,6 +171,8 @@
     margin-right: 5px;
     margin-top: 15px;
     height: 35px;
+    text-transform: uppercase;
+    padding: 12px;
 }
 .SortBox{
     display: flex;
@@ -185,13 +187,29 @@
         width: 70%;
     }
 }
-@media only screen and (max-width: 559px) {
+
+@media only screen and (max-width: 486px) {
+    .SortBox{
+        flex-direction: column;
+        
+    }
     .searchBarInput{
-        width: 300px;
-        font-size: 16px;
+        font-size: 14px;
+        width: 230px;
     }
 }
-
+@media only screen and (max-width: 375px) {
+    .AddRecipeBtn{
+        width: 105px;
+    }
+    .NexPageBtn{
+        width: 105px;
+    }
+    .searchBarInput{
+        font-size: 12px;
+        width: 180px;
+    }
+}
 @-webkit-keyframes slideInUp {
     from {
       -webkit-transform: translate3d(0, 100%, 0);

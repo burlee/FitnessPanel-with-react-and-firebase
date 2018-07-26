@@ -17,6 +17,7 @@ import Box from '../../UI/Box/Box';
 export default class Recipes extends Component {
     state = {
         recipesNotExist: false,
+        displayBox: false,
         modalIsOpen: false,
         showRecipeDetails: false,
         showSearchBar: false,
@@ -195,6 +196,7 @@ export default class Recipes extends Component {
 
     toggleSearchBar = () => {
         this.setState({
+            displayBox: true,
             placeholder:`Wyszukaj wśród ${this.state.recipes.length} przepisów...`,
             showSearchBar: !this.state.showSearchBar,
             startRecipeArray: 0,
@@ -206,6 +208,7 @@ export default class Recipes extends Component {
 
     resetPaginationAndCloseSearch = () => {
         this.setState({
+            displayBox: false,
             search: '',
             showSearchBar: !this.state.showSearchBar,
             startRecipeArray: 0,
@@ -230,7 +233,7 @@ export default class Recipes extends Component {
         this.setState({startRecipeArray: start + 16, endRecipeArray: end + 16})
     }
 
-    backToFirsPage = () => {
+    backToFirstPage = () => {
         this.setState({
             startRecipeArray: 0, 
             endRecipeArray: 16, 
@@ -276,10 +279,10 @@ export default class Recipes extends Component {
                             Aktualnie w naszej bazie znajduje się {this.state.recipes.length} przepisów, więc na pewno wybierzesz coś dla siebie.
                         </p>
                         <div className={classes.SortBox}>
-                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByCaloriesLess}>Sortuj po kaloryczności <i style={{fontSize: '12px'}} class="fas fa-sort-up"></i></button>
-                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByCaloriesMore}>Sortuj po kaloryczności <i style={{fontSize: '12px'}} class="fas fa-sort-down"></i></button>
-                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByTimeLess}>Czas przygotowania <i style={{fontSize: '12px'}} class="fas fa-sort-up"></i></button>
-                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByTimeMore}>Czas przygotowania <i style={{fontSize: '12px'}} class="fas fa-sort-down"></i></button>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByCaloriesLess}>Kaloryczność <i style={{fontSize: '12px'}} class="fas fa-sort-up"></i></button>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByCaloriesMore}>Kaloryczność <i style={{fontSize: '12px'}} class="fas fa-sort-down"></i></button>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByTimeLess}>Czas <i style={{fontSize: '12px'}} class="fas fa-sort-up"></i></button>
+                            <button className={classes.SortingByCaloriesBtn} onClick={this.sortingByTimeMore}>Czas <i style={{fontSize: '12px'}} class="fas fa-sort-down"></i></button>
                         </div>
                     </Aux>
                     }
@@ -307,7 +310,7 @@ export default class Recipes extends Component {
                     level={this.state.level}
                     recipeID={this.state.recipeID}
                     /> : null}
-                <Box/>
+                {this.state.displayBox ? null : <Box/>}
                 {displayRecipes}
                 {this.state.modalIsOpen ? 
                 <Aux>
@@ -337,7 +340,7 @@ export default class Recipes extends Component {
                 <button style={{fontSize: '10px'}} onClick={this.modalToggle} className={classes.AddRecipeBtn}>Dodaj przepis</button>
                 
                 {this.state.recipesNotExist ? null : <button style={{fontSize: '10px'}} onClick={this.pagination} className={classes.NexPageBtn}>Następna strona</button> }
-                {this.state.recipesNotExist ? <button style={{fontSize: '10px'}} onClick={this.backToFirsPage} className={classes.NexPageBtn}>Wróć</button> : null }
+                {this.state.recipesNotExist ? <button style={{fontSize: '10px'}} onClick={this.backToFirstPage} className={classes.NexPageBtn}>Wróć</button> : null }
                 {this.state.successRecipeAddedModal ? <SuccessRecipeAddedModal/> : null}
                 {this.state.isLoading ? <Spinner/> : null}
                 <Footer/>
