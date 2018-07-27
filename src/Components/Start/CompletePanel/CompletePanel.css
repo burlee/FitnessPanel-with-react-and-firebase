@@ -11,6 +11,23 @@
     right: 20px;
     transition: 1s all ease-in;
 }
+.ProgressModalBtn{
+    position: fixed;
+    background-color: #4CAF50;
+    color: white;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    font-weight: bold;
+    font-size: 20px;
+    -webkit-box-shadow: 0px 2px 3px grey;
+    box-shadow: 0px 2px 3px grey;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    outline: none;
+}
 .welcomeText{
     line-height: 1.5;
     margin: 0px auto 15px;

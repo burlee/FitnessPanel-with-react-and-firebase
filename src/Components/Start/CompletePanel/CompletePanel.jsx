@@ -17,6 +17,7 @@ import WeightProgress from './DetailBox/WeightProgress/WeightProgress'
 import PDF from './DetailBox/PDF/PDF';
 import Spinner from '../../../UI/Spinner/Spinner';
 import RecipesLikeBox from './DetailBox/RecipesLikeBox/RecipesLikeBox';
+import ProgressModal from '../ProgressModal/ProgressModal';
 
 export default class CompletePanel extends Component {
     state ={
@@ -30,20 +31,25 @@ export default class CompletePanel extends Component {
         newUserWeight: '',
         showTable: false,
         showWeightInput: false,
+        showProgressModal: false,
         weightValue: null,
         spinnerLoader: true,
         recipesLike: ''
     }
 
+    showProgressModal = () => {
+        this.setState({showProgressModal: !this.state.showProgressModal})
+    }
+    
     showWeightBtn = () => {
         const showWeightInput = !this.state.showWeightInput;
         this.setState({showWeightInput})
     }
 
     componentDidMount(){            
-
-            axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/user.json`)
-            .then(response => {
+        
+        axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/${FirebaseConfig.auth().currentUser.uid}/user.json`)
+        .then(response => {
                 for(let key in response.data){
                     this.setState({
                         age: response.data[key].age,
@@ -111,7 +117,9 @@ export default class CompletePanel extends Component {
         <Aux>
             <Header>
                     <h5 className={classes.PanelHeader}>Witaj {this.state.name} w swoim FitnessPanelu</h5>
+                    <button className={classes.ProgressModalBtn} onClick={this.showProgressModal}><i class="fas fa-table"></i></button>
             </Header>
+                <ProgressModal show={this.state.showProgressModal} modalClosed={this.showProgressModal}/>
                 <CaloriesSummary/>
                 <PDF/>
                 <Macronutrients/>
