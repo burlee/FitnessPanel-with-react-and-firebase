@@ -83,7 +83,7 @@ export default class ExerciseOne extends Component {
                 <span style={{fontWeight: 'bold'}}> Wykonaj 50 powtórzeń.</span>
                 </p>
               </div>
-              <button onClick={this.props.excerciseOneDoneFn}>Ćwiczenia wykonane <i class="fas fa-check"></i></button>
+              <button onClick={this.props.excerciseOneDoneFn}>Ćwiczenia wykonane <i className="fas fa-check"></i></button>
           </div>)
         }
     return (

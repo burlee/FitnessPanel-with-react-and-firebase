@@ -18,8 +18,8 @@
     box-sizing: border-box;
     color: #4c4c4c;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
-    animation: openmodal;
     animation-duration: 0.5s;
+    animation: openmodal;
 }
 .AccountDeleteModal p{
     text-align: center;

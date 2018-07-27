@@ -3,7 +3,8 @@
     width: 50%;
     margin: 0px auto 15px;
     color: rgb(76, 76, 76);
-    text-align: center;
+    text-align: justify;
+    text-align-last: center;
     font-size: 12px;
 }
 @media only screen and (max-width: 768px) {

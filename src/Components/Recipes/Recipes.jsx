@@ -274,7 +274,7 @@ export default class Recipes extends Component {
                         <div className={classes.Loup}>
                             <i onClick={this.toggleSearchBar} className="fas fa-search"></i>
                         </div>
-                        <p style={{width: '80%', margin: '0 auto', lineHeight: '1.3', padding: '10px', boxSizing:'border-box'}}>
+                        <p style={{width: '80%', margin: '0 auto', lineHeight: '1.3', padding: '10px', boxSizing:'border-box', textAlign: 'justify', textAlignLast: 'center'}}>
                             Dziel się swoimi fit przepisami z innymi użytkownikami lub znajdź coś dla siebie. Przejście na dietę to nie tylko nudne dania, zobacz jak można zdrowo się odżywiać komponując posiłki ze zdrowych produktów.
                             Aktualnie w naszej bazie znajduje się {this.state.recipes.length} przepisów, więc na pewno wybierzesz coś dla siebie.
                         </p>

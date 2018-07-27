@@ -33,7 +33,6 @@ export default class ProgressModal extends PureComponent {
         const userBicep = event.target.value.slice(0, 2);
         this.setState({ userBicepDimensions: userBicep });
     }
-
     bicepDimensionsHandler = () => {
         const userBicepDimensions = {
             userBicep: this.state.userBicepDimensions
@@ -55,7 +54,6 @@ export default class ProgressModal extends PureComponent {
         const userChest = event.target.value.slice(0, 3);
         this.setState({ userChestDimensions: userChest });
     }
-
     chestDimensionsHandler = () => {
         const userChestDimensions = {
             userChest: this.state.userChestDimensions
@@ -77,7 +75,6 @@ export default class ProgressModal extends PureComponent {
         const userThigh = event.target.value.slice(0, 3);
         this.setState({ userThighDimensions: userThigh });
     }
-
     thighDimensionsHandler = () => {
         const userThighDimensions = {
             userThigh: this.state.userThighDimensions
@@ -102,7 +99,7 @@ export default class ProgressModal extends PureComponent {
                 <Aux>
                     <Backdrop show={this.props.show} modalClosed={this.props.modalClosed}/>
                     <div className={classes.ProgressModal}>
-                        <h1><i class="fas fa-table"></i> Tabela wymiarów</h1>
+                        <h1><i class="fas fa-table"></i> Kontroluj swoje wymiary</h1>
                         <div className={classes.DimensionsBox}>
                             <p>Podaj obwód bicepsu:</p>
                             <button onClick={this.bicepDimensionsHandler}>Zatwierdź</button>
@@ -130,7 +127,7 @@ export default class ProgressModal extends PureComponent {
         }
         return (
             <Aux>
-            {showProgressModal}
+                {showProgressModal}
             </Aux>
         )
     }

@@ -61,19 +61,21 @@
     font-size: 12px;
     color: white;
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 .Excercise img{
     width: 70px;
     height: 70px;
     background: #4caf50;
     border-radius: 3px;
+    margin: 5px;
 }
 .ExcerciseDone img{
     width: 70px;
     height: 70px;
     background: #4caf50;
     border-radius: 3px;
+    margin: 5px;
 }
 .ExcerciseDone{
     box-shadow: 0px 1px 3px #808080;
@@ -102,6 +104,7 @@
     color: white;
     font-weight: bold;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .Movie{
@@ -123,7 +126,7 @@
     color: #4c4c4c;
     box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
-@media only screen and (max-width: 486px) {
+@media only screen and (max-width: 526px) {
     .Excercise{
         height: 600px;
     }
