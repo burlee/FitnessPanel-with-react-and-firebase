@@ -73,6 +73,17 @@
     .RecipeDetails h1{
       font-size: 14px;
     }
+    .RecipeDetails img{
+      width: auto;
+      height: 125px;
+    }
+}
+
+@media only screen and (max-width: 493px) {
+  .RecipeDetails img{
+    width: auto;
+    height: 125px;
+  }
 }
 
 @-webkit-keyframes slideInRight {

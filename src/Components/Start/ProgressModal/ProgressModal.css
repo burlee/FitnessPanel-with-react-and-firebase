@@ -69,7 +69,18 @@
     align-items: center;
     justify-content: center;
 }
+@media only screen and (max-width: 599px) {
+    .ProgressModal h1{
+        font-size: 18px;
+    }
+  }
 
+  @media only screen and (max-width: 486px) {
+    .ProgressModal h1{
+        font-size: 16px;
+    }
+  }
+  
 @-webkit-keyframes slideInRight {
     from {
       -webkit-transform: translate3d(100%, 0, 0);
