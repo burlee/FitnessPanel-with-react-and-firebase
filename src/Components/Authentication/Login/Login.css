@@ -8,9 +8,10 @@
 }
 .FormStyle input {
     width: 100%;
+    box-sizing: border-box;
     height: 40px;
     outline: none;
-    text-indent: 10px;
+    padding-left: 10px;
     border: 1px solid rgba(0, 0, 0, 0.15);
     transition: 0.3s all ease-in-out;
     margin: 5px 0px;
@@ -23,9 +24,10 @@
 }
 .FormStyle input:focus {
     width: 100%;
+    box-sizing: border-box;
     height: 40px;
     outline: none;
-    text-indent: 10px;
+    padding-left: 10px;
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 .FormStyle button{
@@ -55,6 +57,23 @@
     box-shadow: 0px 2px 5px #808080;
     font-weight: bold;
 }
+
+@media only screen and (max-width: 469px) {
+    .FormStyle input{
+        height: 25px;
+    }
+    .FormStyle input:focus{
+        height: 25px;
+    }
+    .FormStyle label{
+        font-size: 11px;
+    }
+    .FormStyle button{
+        padding: 12px;
+        font-size: 11px;
+    }
+}
+
 @keyframes openmodal{
     from{opacity: 0;}
     to{opacity: 1;}

@@ -73,19 +73,39 @@
     .RecipeDetails h1{
       font-size: 14px;
     }
-    .RecipeDetails img{
-      width: auto;
-      height: 125px;
-    }
 }
 
-@media only screen and (max-width: 493px) {
+@media only screen and (max-width: 486px) {
   .RecipeDetails img{
     width: auto;
-    height: 125px;
+    height: 110px;
+  }
+  .RecipeDetails h1{
+    font-size: 12px;
+    height: 35px;
+    line-height: 35px;
+  }
+  .RecipeDetails h4{
+    font-size: 15px;
+  }
+  .Information{
+    flex-direction: column;
+    text-align: center;
+    background: none;
+    color: #808080;
+    font-size: 11px;
+    margin: 10px;
+  }
+  .RecipeDetails p{
+    margin: 0;
   }
 }
-
+@media only screen and (max-width: 399px) {
+  .RecipeDetails p{
+    font-size: 11px;
+    line-height: 1.2;
+  }
+}
 @-webkit-keyframes slideInRight {
     from {
       -webkit-transform: translate3d(100%, 0, 0);

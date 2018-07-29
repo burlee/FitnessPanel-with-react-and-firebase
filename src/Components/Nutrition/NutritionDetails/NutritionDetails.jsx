@@ -93,7 +93,7 @@ export default class NutritionDetails extends Component {
                     Kontrolowanie swoich makroskładników w diecie jest bardzo ważne, to dzięki nim wiemy jak wygląda nasz bilans kaloryczny.
                     Rozkład Twoich makroskładników przedstawiony jest na poniższym wykresie:
                 </p>
-                <div style={{ height: '350px', width: '350px', margin: '0 auto' }}>
+                <div className={classes.Chart}>
                     {showChart}
                 </div>
             </PanelWrapper>

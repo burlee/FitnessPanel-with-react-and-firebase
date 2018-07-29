@@ -177,24 +177,34 @@
     display: flex;
     justify-content: center;
 }
+
 @media only screen and (max-width: 768px) {
     .searchBar{
         justify-content: flex-start;
     }
     .searchBarInput{
         margin-left: 20px;
-        width: 70%;
+        width: 65%;
     }
 }
 
 @media only screen and (max-width: 486px) {
     .SortBox{
-        flex-direction: column;
-        
+        flex-direction: column; 
     }
     .searchBarInput{
         font-size: 14px;
         width: 230px;
+    }
+    .Modal{
+        width: 230px;
+        transform: translate(-29%,-50%);
+    }
+    .Modal button{
+        margin-top: 10px;
+    }
+    .SortingByCaloriesBtn{
+        padding: 0px;
     }
 }
 @media only screen and (max-width: 375px) {

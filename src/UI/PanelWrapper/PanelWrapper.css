@@ -20,6 +20,13 @@
     flex-wrap: wrap;
     flex-direction: column;
 }
+
+@media only screen and (max-width: 469px) {
+    .DisplayFlexAccountOptions{
+        display: block;
+    }
+}
+
 @keyframes openmodal{
     from{opacity: 0;}
     to{opacity: 1;}

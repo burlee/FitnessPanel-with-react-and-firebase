@@ -52,5 +52,18 @@
     flex-direction: column;
 }
 
+@media only screen and (max-width: 469px) {
+    .accountDelete{
+        text-align: center;
+        height: 50vh;
+    }
+    .changeAddressEmail{
+        height: 50vh;
+    }
+    .changePassword{
+        height: 50vh;
+    }
+}
+
 
 
