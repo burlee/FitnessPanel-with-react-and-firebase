@@ -1,12 +1,12 @@
 import axios from 'axios';
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import FirebaseConfig from '../../../Config/FirebaseConfig';
 import Aux from '../../../HOC/aux_x';
 import Backdrop from '../../../UI/Backdrop/Backdrop';
 import Footer from '../../../UI/Footer/Footer'
 import classes from './RecipeDetails.css';
 
-export default class RecipeDetails extends PureComponent {
+export default class RecipeDetails extends Component {
     state = {
         currentUser: FirebaseConfig.auth().currentUser.uid,
         recipeID: this.props.recipeID,
@@ -18,7 +18,6 @@ export default class RecipeDetails extends PureComponent {
     }
 
     componentDidMount() {
-
         //Check which user like recipe
         axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/userLikeItList/${this.state.currentUser}.json`)
             .then(response => {

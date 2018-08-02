@@ -41,7 +41,6 @@ export default class Recipes extends Component {
 
     componentDidMount(){
         const updateRecipes = [];
-            
         axios.get(`https://fitnesspanel-eb7a2.firebaseio.com/recipes.json`)
             .then(response => {
                 let mealFromDB = response.data;
@@ -71,6 +70,8 @@ export default class Recipes extends Component {
             .catch(error => console.log(error))
 
     }
+
+    //Sorting function --START--
     sortingByCaloriesMore = () => {
         const recipes = [...this.state.recipes];
         let sortingByCalories = recipes.sort((a, b) => {
@@ -133,7 +134,8 @@ export default class Recipes extends Component {
             })
         this.setState({recipes: sortingByCalories})
     }
-
+    //Sorting function --END--
+    
     modalToggle = () => {
         this.setState({modalIsOpen: !this.state.modalIsOpen})
     }
@@ -226,7 +228,7 @@ export default class Recipes extends Component {
         //Show back to home button if next page is empty.
         if((recipesArrayLength - this.state.currentPage * 16) <= 0){
             this.setState({recipesNotExist: true})
-        }else(this.setState({recipesNotExist: false}))
+        }else(this.setState({recipesNotExist: false}));
 
         const start = this.state.startRecipeArray;
         const end = this.state.endRecipeArray;
